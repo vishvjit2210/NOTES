@@ -1,0 +1,122 @@
+#noteCreateMsg,#success,#alreadyInFav,#addToFavourite {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(97rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#noteCreateMsg.show,#success.show,#alreadyInFav.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+@keyframes scrollRightToLeft {
+    0% {
+        transform: translateX(97rem);
+    }
+
+    100% {
+        transform: translateX(70rem);
+    }
+}
+
+@keyframes FavMsgRightToLeft {
+    0% {
+        transform: translateX(97rem);
+    }
+
+    100% {
+        transform: translateX(70rem);
+    }
+}
+@keyframes addFavMsgRightToLeft {
+    0% {
+        transform: translateX(97rem);
+    }
+
+    100% {
+        transform: translateX(70rem);
+    }
+}
+
+.scroll-animation {
+    animation: scrollRightToLeft 0.5s linear 1;
+}
+
+
+@keyframes pingIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.ping-animation-open {
+    animation: pingIn 0.4s linear 1;
+}
+
+@keyframes pingOut {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.ping-out {
+    animation: pingOut 0.4s linear 1;
+}
+
+@keyframes openSideBar {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.sidebar-open {
+    animation: openSideBar 0.4s ease-in-out;
+}
+@keyframes closeSideBar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.sidebar-close {
+    animation: closeSideBar 0.4s ease-in-out;
+}
+.rating {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.bx-star {
+    color: #000000; /* Yellow color for the star */
+}
+
+.bxs-star {
+    color: #f39c12; /* Golden color for the filled star */
+}
