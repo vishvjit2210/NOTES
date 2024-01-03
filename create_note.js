@@ -37,7 +37,6 @@ function showNotes() {
         notesObj = JSON.parse(localStorage.getItem("notes"));
     }
 
-    // Reverse the notesObj array to show the newest notes first
     notesObj.reverse();
 
     let html = "";
