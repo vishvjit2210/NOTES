@@ -9,6 +9,7 @@ addBtn.addEventListener("click", function (e) {
     else {
         notesObj = JSON.parse(notes);
     }
+
     var notesObjectId = JSON.parse(localStorage.getItem("notes")).length;
 
     let myObj = {
@@ -36,12 +37,10 @@ function showNotes() {
     } else {
         notesObj = JSON.parse(localStorage.getItem("notes"));
     }
-
     notesObj.reverse();
-
     let html = "";
     notesObj.forEach(function (element, index) {
-        const noteIndex = index + 1;
+            const noteIndex = index + 1;
         if (element.title && element.text) {
             html += `
                 <div id="notesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-64 border-2  border-black px-2 pt-2 rounded">
@@ -66,8 +65,9 @@ function showNotes() {
                         </div>
                     </div>
                 </div>  `;
-        }
-    });
+            } 
+        });
+        
 
     function updateNoteTimes() {
         notesObj.forEach(function (element, index) {
@@ -104,7 +104,6 @@ function showNotes() {
         notesElm.innerHTML = "Nothing to show!";
     }
 }
-
 showNotes();
 
 let search = document.getElementById('searchTxt');

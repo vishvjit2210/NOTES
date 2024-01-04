@@ -35,29 +35,32 @@ function showSidebar() {
 // add note as favourite
 function favorites(index) {
     let notesObj = JSON.parse(localStorage.getItem("notes")) || [];
+    let favObj = JSON.parse(localStorage.getItem("favItem")) || [];
+
+    // Reverse the notesObj array to match the reversed order in the display
+    notesObj.reverse();
+
+    // Get the note to be added to favorites using the mapped index
     let selectedNote = notesObj[index];
 
-    // Check if the note is already in favorites
-    let favItem = localStorage.getItem("favItem") || "[]";
-    let favObj = JSON.parse(favItem);
+    // Map the reversed index back to the original index
+    let originalIndex = notesObj.length - index - 1;
 
     // Check if the note is already in favorites
-    let isAlreadyFav = favObj.some(favNote => favNote.title === selectedNote.title && favNote.text === selectedNote.text);
+    let isAlreadyFavorite = favObj.some(favNote => favNote.title === selectedNote.title && favNote.text === selectedNote.text);
 
-    if (!isAlreadyFav) {
-        // Add the selected note to favorites
+    if (!isAlreadyFavorite) {
+        // Add the note to favorites
         favObj.push(selectedNote);
 
-        // Update the localStorage for favorites
+        // Update localStorage with the reversed order notesObj
         localStorage.setItem("favItem", JSON.stringify(favObj));
+    }
 
-        // call function to show favourite notes
-        showFavNotes();
-    } else {
-        // alert to show notes already exist or not in favourite
-        alreadyInFav();
-    }   
+    // Update the UI
+    showFavNotes();
 }
+
 
 // to show popup for added notes in favourite
 function addToFavourite(){

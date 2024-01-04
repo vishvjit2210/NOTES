@@ -2,20 +2,31 @@ function deleteNote(index) {
     let notesObj = JSON.parse(localStorage.getItem("notes")) || [];
     let favObj = JSON.parse(localStorage.getItem("favItem")) || [];
 
-    // Get the note to be deleted
+    // Reverse the notesObj array to match the reversed order in the display
+    notesObj.reverse();
+
+    // Get the note to be deleted using the mapped index
     let deletedNote = notesObj[index];
 
     // Remove the note from the main page
     notesObj.splice(index, 1);
+    
+    // Map the reversed index back to the original index
+    let originalIndex = notesObj.length - index - 1;
+
     // Remove the note from the favorite page, if it exists
     let favIndex = favObj.findIndex(favNote => favNote.title === deletedNote.title && favNote.text === deletedNote.text);
     if (favIndex !== -1) {
         favObj.splice(favIndex, 1);
     }
-    // Update localStorage
-    localStorage.setItem("notes", JSON.stringify(notesObj));
+
+    // Remove the corresponding star information
+    localStorage.removeItem(`userRating_${originalIndex}`);
+
+    // Update localStorage with the reversed order notesObj
+    localStorage.setItem("notes", JSON.stringify(notesObj.reverse()));
     localStorage.setItem("favItem", JSON.stringify(favObj));
-    
+
     // Update the UI
     showNotes();
     showFavNotes();
