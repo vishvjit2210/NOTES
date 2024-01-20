@@ -1,21 +1,32 @@
-#noteCreateMsg,#success,#alreadyInFav,#addToFavourite {
-    opacity: 0;
-    visibility: hidden;
-    position: fixed;
-    left: 0;
-    top: 0;
-    transform: translateX(97rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
+body{
+    background-color: #f2f2f2;
+}
+.message{
+    font-family: 'Saira Semi Condensed', sans-serif;
+}
+.logo{
+    font-family: 'Rubik Doodle Shadow', system-ui;
+}
+.welcome {
+    font-family: 'Fugaz One', sans-serif;
+}
+.addTitle{
+    font-family: 'Russo One', sans-serif;
 }
 
-#noteCreateMsg.show,#success.show,#alreadyInFav.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
+.title {
+    font-family: 'Black Ops One', system-ui;
+}
+.description {
+    font-family: 'Roboto Slab', serif;
+}
+.buttons {
+    font-family: 'Kanit', sans-serif;
+}
+.require::after {
+    content: "*";
+    color:#ff1a1a;
+    margin-left: 2px;
 }
 
 @keyframes scrollRightToLeft {
@@ -26,29 +37,6 @@
     100% {
         transform: translateX(70rem);
     }
-}
-
-@keyframes FavMsgRightToLeft {
-    0% {
-        transform: translateX(97rem);
-    }
-
-    100% {
-        transform: translateX(70rem);
-    }
-}
-@keyframes addFavMsgRightToLeft {
-    0% {
-        transform: translateX(97rem);
-    }
-
-    100% {
-        transform: translateX(70rem);
-    }
-}
-
-.scroll-animation {
-    animation: scrollRightToLeft 0.5s linear 1;
 }
 
 
@@ -79,9 +67,24 @@
         opacity: 0;
     }
 }
-
 .ping-out {
     animation: pingOut 0.4s linear 1;
+}
+
+@keyframes pingInOut {
+    0% {
+        transform: scale(0.6) rotate(0deg);
+    }
+    50% {
+        transform: scale(1) rotate(180deg);
+    }
+    100% {
+        transform: scale(0.6) rotate(360deg);
+    }
+}
+
+.pingInOut {
+    animation: pingInOut 1.7s  linear infinite;
 }
 
 @keyframes openSideBar {
@@ -107,10 +110,38 @@
 .sidebar-close {
     animation: closeSideBar 0.4s ease-in-out;
 }
+
+@keyframes scrollTopToDown {
+    0% {
+        transform: translateY(-8rem);
+    }
+}
+.scrollTopToDown {
+    animation: scrollTopToDown 0.7s linear 1;
+}
+
+#noteCreateMsg,#success,#alreadyInFav,#addToFavourite {
+    display: none;
+    width: 100%;
+    visibility: hidden;
+    position: fixed;
+    top: -0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#noteCreateMsg.show,#success.show,#alreadyInFav.show,#addToFavourite.show {
+    visibility: visible;
+    transform: translateY(0);
+}   
+
 .rating {
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .bx-star {
@@ -119,4 +150,17 @@
 
 .bxs-star {
     color: #f39c12; /* Golden color for the filled star */
+}
+
+@keyframes menuOpen {
+    0% {
+        transform: scale(0.6);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.menu-open{
+    animation: menuOpen 0.5s linear 1;
 }
