@@ -47,8 +47,8 @@ function showNotes() {
             html += `
                 <div id="notesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-64 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title_${index}" class="card-title text-lg title w-60 truncate text-black">${element.title}</h5>   
-                        <p id="description_${index}" class="card-text w-60 truncate description pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title text-lg title text-black">${element.title}</h5>   
+                        <p id="description_${index}" class="card-text description pt-1 pb-2">${element.text}</p>
                         <div class="flex">
                             <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn buttons border-[3px] border-black background-field h-9 w-28 transition bg-[#1a1aff] text-white px-3 rounded">Delete</button>
                             <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons border-[3px] border-[#ff0000] background-field bg-black transition text-white ml-3 h-9 py-1 w-28 px-3 rounded">Favourite</button>

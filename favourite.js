@@ -93,8 +93,8 @@ function showFavNotes() {
             sidebarItem += `
                 <div id="favNotesCard${index}" class="noteCard hover:scale-105 flex transition mt-4 w-60 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title_${index}" class="card-title text-xl title w-56 truncate text-black">${element.title}</h5>
-                        <p id="description_${index}" class="card-text text-lg w-56 truncate description pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title text-xl title text-black">${element.title}</h5>
+                        <p id="description_${index}" class="card-text text-lg description pt-1 pb-2">${element.text}</p>
                         <button id="removeFav_${index}" onclick="removeFromFavorites(${index})" class="btn text-lg buttons border-[3px] border-black bg-blue-600 text-white px-6 py-1 mb-2 rounded">Remove</button>
                     </div>
                 </div>`;
