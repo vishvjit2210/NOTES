@@ -1,3 +1,4 @@
+// to show error validation on input field
 function addBtnValidation() {
     errorMessage.style.display = 'none';
     errorMsg.style.display = 'none';

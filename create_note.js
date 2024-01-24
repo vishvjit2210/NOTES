@@ -2,17 +2,18 @@ let addBtn = document.getElementById('addBtn');
 addBtn.addEventListener("click", function (e) {
     let addTxt = document.getElementById("addTxt");
     let addTitle = document.getElementById("addTitle");
-
+    
     if (!addTitle.value || !addTxt.value) {
         return;
     }
-
+    
     let notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];
     }
     else {
         notesObj = JSON.parse(notes);
+        location.reload();
     }
 
     let myObj = {
@@ -46,8 +47,8 @@ function showNotes() {
             html += `
                 <div id="notesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-64 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title" class="card-title text-lg title text-black">${element.title}</h5>   
-                        <p id="description" class="card-text description pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title text-lg title w-60 truncate text-black">${element.title}</h5>   
+                        <p id="description_${index}" class="card-text w-60 truncate description pt-1 pb-2">${element.text}</p>
                         <div class="flex">
                             <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn buttons border-[3px] border-black background-field h-9 w-28 transition bg-[#1a1aff] text-white px-3 rounded">Delete</button>
                             <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons border-[3px] border-[#ff0000] background-field bg-black transition text-white ml-3 h-9 py-1 w-28 px-3 rounded">Favourite</button>
@@ -65,17 +66,46 @@ function showNotes() {
                             </div>
                         </div>
                     </div>
-                </div>  `;
+                </div>  
+                `;
             }
         });
         
+        
         let notesElm = document.getElementById("notes");
-        if (notesObj.length != 0) {
+        if (notesObj.length !== 0) {
             notesElm.innerHTML = html;
+            
+            // notesObj.forEach((element, index) => {
+            //     let titleElm = document.getElementById(`title_${index}`);
+            //     let descriptionElm = document.getElementById(`description_${index}`);
+            
+            //     if (titleElm) {
+            //         titleElm.addEventListener('mouseover', function () {
+            //             const fullTitle = element.title;
+            //             const maxLength = 15;
+            //             if (fullTitle.length > maxLength) {
+            //                 titleElm.setAttribute('title', fullTitle);
+            //             }
+            //         });
+            //     }
+            
+            //     if (descriptionElm) {
+            //         descriptionElm.addEventListener('mouseover', function() {
+            //             const fullDescription = element.text;
+            //             const maxLength = 15;
+            //             if (fullDescription.length > maxLength) {
+            //                 descriptionElm.setAttribute('title', fullDescription);
+            //             }
+            //         });
+            //     }
+            // });
+            
         } else {
             notesElm.innerHTML = "Nothing to show!";
         }
         initializeStarsInReverseOrder();
+        
 
     function updateNoteTimes() {
         notesObj.forEach(function (element, index) {
@@ -126,8 +156,19 @@ search.addEventListener("input", function () {
 function menuOpen(){
     document.getElementById('menu').style.display= "block";
 }
+
 function menuClose(){
-    document.getElementById('menu').style.display= "none";
+    let Menu = document.getElementById('menu');
+
+    // Add the animation class to trigger the animation
+    Menu.classList.add('menu-close');
+
+    // Use a setTimeout to delay hiding the menu until the animation completes
+    setTimeout(function () {
+        Menu.style.display = 'none';
+        // Remove the animation class to reset it for the next time
+        Menu.classList.remove('menu-close');
+    }, 500);
 }
 
 // Function to initialize the star ratings for a specific note

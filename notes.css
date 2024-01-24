@@ -56,6 +56,7 @@ body{
     animation: pingIn 0.4s linear 1;
 }
 
+
 @keyframes pingOut {
     0% {
         transform: scale(1);
@@ -154,7 +155,7 @@ body{
 
 @keyframes menuOpen {
     0% {
-        transform: scale(0.6);
+        transform: scale(0);
     }
     100% {
         transform: scale(1);
@@ -163,4 +164,126 @@ body{
 
 .menu-open{
     animation: menuOpen 0.5s linear 1;
+}
+
+@keyframes menuClose {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.menu-close{
+    animation: menuClose 0.5s linear 1;
+}
+
+@media (max-width:399px) {
+    .popUp {
+        top:12rem;
+    }
+}
+
+@media (min-width:400px) {
+    .popUp{
+        top:21rem;
+    }
+}
+
+/* .card-title[title]:hover::after{
+    content: attr(title);
+    color: black;
+    background-color: #d9d9d9;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 95%;
+    left: 0;
+    width: 100%;    
+    border: 3px solid black;
+    z-index: 1;
+    animation: menuOpen 0.5s linear 1;
+} 
+
+.card-text:hover::after{
+    content: attr(title);
+    color: black;
+    background-color: #d9d9d9;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 28%;
+    overflow-wrap: break-word;
+    left: 0;
+    width: 100%;    
+    border: 3px solid black;
+    z-index: 1;
+    animation: menuOpen 0.5s linear 1;
+} */
+
+/* media query for hover full title */
+/* @media (max-width: 640px) {
+    .card-title[title]:hover::after
+     {
+        animation: menuOpen 0.5s linear 1;
+        width: 100%;    
+        top: -2rem;
+        overflow: auto;
+        border: 3px solid black;
+    }
+} */
+
+/* media query for hover full description */
+/* @media (max-width: 640px) {
+    .card-text[title]:hover::after
+     {
+        animation: menuOpen 0.5s linear 1;
+        width: 100%;    
+        bottom: 3rem;
+        overflow: auto;
+        border: 3px solid black;
+    }
+} */
+
+.noteCard {
+    position: relative;
+    display: inline-block;
+}
+
+.card-title[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    display: none;
+    padding: 5px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.noteCard:hover .card-title[title]:hover::after {
+    display: block;
+}
+
+.card-text[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    display: none;
+    padding: 5px;
+    
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.noteCard:hover .card-text[title]:hover::after {
+    display: block;
 }

@@ -52,23 +52,6 @@ let currentFavBtnIndex;
         PingAnimationForOpen();
     }
 
-    // let deleteBtn = document.getElementById('deleteBtn');
-
-    // // Event listener to open the delete popup when clicking on the delete button
-    // deleteBtn.addEventListener('click', function() {
-    //     showDeletePopUp();
-    // });
-
-    // Event listener to close the delete popup when clicking anywhere on the body
-    // document.body.addEventListener('click', function(event) {
-    //     let deletePopup = document.getElementById('deletePopup');
-
-    //     // Check if the clicked element is not the delete popup or its child
-    //     if (!deletePopup.contains(event.target) && event.target !== deleteBtn) {
-    //         closeDeletePopUp();
-    //     }
-    // });
-
     // close delete popup
     function closeDeletePopUp() {
         let deletePopUp = document.getElementById('deletePopUp');

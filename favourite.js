@@ -87,22 +87,50 @@ function showFavNotes() {
         favObj = JSON.parse(favItem);
     }
 
-    // HTML for favorite notes
     let sidebarItem = "";
     favObj.forEach(function (element, index) {
         if (element.title && element.text) {
             sidebarItem += `
-                <div id="favNotesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-60 border-[3px] border-black px-2 pt-2 rounded">
+                <div id="favNotesCard${index}" class="noteCard hover:scale-105 flex transition mt-4 w-60 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title" class="card-title text-xl title text-black">${element.title}</h5>
-                        <p id="description" class="card-text text-lg description pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title text-xl title w-56 truncate text-black">${element.title}</h5>
+                        <p id="description_${index}" class="card-text text-lg w-56 truncate description pt-1 pb-2">${element.text}</p>
                         <button id="removeFav_${index}" onclick="removeFromFavorites(${index})" class="btn text-lg buttons border-[3px] border-black bg-blue-600 text-white px-6 py-1 mb-2 rounded">Remove</button>
                     </div>
                 </div>`;
         }
     });
-    document.getElementById("sidebar").innerHTML = sidebarItem;
+
+    let sidebarElm = document.getElementById("sidebar");
+    if (favObj.length !== 0) {
+        sidebarElm.innerHTML = sidebarItem;
+
+        // // Event listeners for titles in the sidebar
+        // favObj.forEach((element, index) => {
+        //     let titleElm = document.getElementById(`title_${index}`);
+        //     let descriptionElm = document.getElementById(`description_${index}`);
+        //     if (titleElm || descriptionElm) {
+        //         titleElm.addEventListener('mouseover', function () {
+        //             const fullTitle = element.title;
+        //             const maxLength = 15;
+        //             if (fullTitle.length > maxLength) {
+        //                 titleElm.setAttribute('title', fullTitle);
+        //             }
+        //         });
+        //         descriptionElm.addEventListener('mouseover', function() {
+        //             const fullDescription = element.text;
+        //             const maxLength = 15;
+        //             if(fullDescription.length > maxLength) {
+        //                 descriptionElm.setAttribute('title', fullDescription);
+        //             }
+        //         });
+        //     }
+        // });
+    } else {
+        sidebarElm.innerHTML = "No favorite notes!";
+    }
 }
+
 showFavNotes();
 
 function removeFromFavorites(index) {
