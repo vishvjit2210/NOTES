@@ -13,7 +13,6 @@ addBtn.addEventListener("click", function (e) {
     }
     else {
         notesObj = JSON.parse(notes);
-        location.reload();
     }
 
     let myObj = {

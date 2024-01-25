@@ -36,34 +36,32 @@
                         <h1 class="text-xl sm:text-2xl lg:text-3xl space-x-2 md:space-x-0 text-[#00ff00] font-Black font-semibold logo"><span class="text-[#ff1a1a]">M</span>agic <span class="text-[#ff1a1a]">N</span>otes</h1>
                     </a>
                 </div>
-                <ul class="flex gap-3 text-sm lg:text-lg">
-                    <li><button class="description hidden lg:block">Home</button></li>
-                    <li><button class="description hidden lg:block" id="favButton" onclick="showSidebar()">Favourites</button></li>
+                <ul class="flex gap-5 text-sm lg:text-lg">
+                    <li><button class="description hidden lg:block hover:scale-105 hover:text-[#ff1a1a] transition">Home</button></li>
+                    <li><button class="description hidden lg:block hover:scale-105 hover:text-[#ff1a1a] transition" id="favButton" onclick="showSidebar()">Favourites</button></li>
                 </ul>
 
                 <!-- menu bar -->
                 <div class="lg:hidden">
                     <button onclick="menuOpen()" class="flex items-center gap-2 mr-2 text-xl description text-[#00ff00] rounded-md">Menu <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #ff1a1a"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg></button>
                     
-                    <div id="menu" class="hidden absolute top-16 right-4 menu-open w-36 bg-white text-black  rounded">
+                    <div id="menu" class="hidden absolute top-16 right-4 menu-open w-36 bg-black text-black rounded z-20">
                         <!-- menu header -->
                         <div class="flex justify-between items-center border-b-[3px] border-[#ff1a1a] px-2 py-1">    
                             <button onclick="menuClose()"><svg class="bg-gray-400 rounded-md hover:text-white hover:bg-[#ff1a1a] active:scale-90 transition" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="fill: currentcolor;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg></button>
-                            <h1 class="welcome text-lg">Menu</h1>
+                            <h1 class="welcome text-lg text-[#00ff00]"><span class="text-[#ff1a1a]">M</span>enu</h1>
                         </div>
                         <!-- menu body -->
                         <ul class="px-2 py-2">
-                            <li><button class="description mt-2">Home</button></li>
-                            <li><button class="description" onclick="showSidebar()">Favourite</button></li>
+                            <li><button class="description mt-2 text-white hover:scale-105 hover:text-[#ff1a1a] transition">Home</button></li>
+                            <li><button class="description text-white hover:scale-105 hover:text-[#ff1a1a] transition" onclick="showSidebar()">Favourite</button></li>
                         </ul>
                     </div>
                 </div>
 
             </div>
-            <div class="mt-3">
-                <input
-                    class="w-full lg:w-72 description px-3 h-10 rounded text-black focus:outline-none focus:outline-2 focus:outline-purple-500"
-                    type="search" name="searchbar" id="searchTxt" placeholder="Search Here...">
+            <div class="mt-3 lg:mt-0">
+                <input class="w-full lg:w-80 description px-3 mr-5 h-10 rounded text-black focus:outline-none focus:outline-2 focus:outline-purple-500" type="search" name="searchbar" id="searchTxt" placeholder="Search Here...">
             </div>
         </nav>
     </div>
@@ -100,11 +98,11 @@
                     action="">
                     <h5 class="text-xl require addTitle">Add Title</h5>
                     <input class="w-full description rounded h-10 px-2 py-1 bg-transparent border-[3px] border-black" type="text"
-                        name="text" id="addTitle" placeholder="Enter title..." autocomplete="off">
+                        name="text" id="addTitle" autocomplete="off">
                     <span id="errorMessage" class="text-[#ff0000] -translate-y-1 text-sm description font-semibold"></span>
                     <h5 class="text-xl require addTitle">Add Description</h5>
                     <textarea class="bg-transparent description rounded px-2 py-1 border-[3px] border-black" name="textarea" id="addTxt"
-                        rows="3" placeholder="Enter description..."></textarea>
+                        rows="3"></textarea>
                     <span id="errorMsg" class="text-[#ff0000] -translate-y-1 text-sm description font-semibold"></span>
                     <button id="addBtn" onclick="addBtnValidation(),noteCreateMsg()"
                         class="buttons border-[3px] border-black text-lg py-1 w-32 active:scale-95 transition bg-[#1a1aff] text-white px-3 rounded"
@@ -114,14 +112,14 @@
         </div>
 
         <div class="flex items-center flex-col p-1">
-            <h1 class=" text-2xl font-semibold pt-2 pb-1 w-[17rem] md:w-[35rem] lg:w-[50rem] welcome border-b-4 rounded border-[#ff1a1a]">Your Notes!</h1>
-            <div id="notes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"> </div>
+            <h1 class="text-2xl font-semibold pt-2 pb-1 w-[17rem] md:w-[35rem] lg:w-[50rem] welcome border-b-4 rounded border-[#ff1a1a]">Your Notes!</h1>
+            <div id="notes" class="grid grid-cols-1 w-[16rem] md:w-[34rem] lg:w-[49rem] md:grid-cols-2 lg:grid-cols-3 gap-3"> </div>
         </div>
     </div>
 
     <!-- popUp -->
     <div class="popUp w-full transition flex justify-center fixed top-56 sm:top-[25rem] lg:top-48  xl:top-52">
-        <div id="deletePopUp" class="hidden w-[20rem] lg:w-[30rem] bg-red-50 border-2 border-red-500  shadow-2xl shadow-black rounded-md p-5">
+        <div id="deletePopUp" class="hidden w-[20rem] lg:w-[30rem] bg-red-50 border-[3px] border-[#f70000]  shadow-2xl shadow-black rounded-md p-5">
             <div class="relative">
                 <button onclick="closeDeletePopUp();"><svg class="absolute hover:bg-[#f70000] hover:text-white transition top-0 right-0 bg-gray-400 rounded-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: currentcolor;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg></button>
             </div>
@@ -137,19 +135,19 @@
     </div>
 
     <!-- display success Dlt msg -->
-    <div id="success" class="w-full bg-[#ffe6e6]">
+    <div id="success" class="w-full">
         <div class="sm:flex justify-center">
             <div class="flex justify-between items-center border-2 border-[#ff0000] bg-[#ffe6e6] xl:w-[22rem] px-3 py-2 rounded">
                 <h1 class="text-sm lg:text-xl message font-semibold text-[#ff0000]">Your note is successfully deleted</h1>
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0,0,256,256">
                     <g fill="#ff0000" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M13,3c-0.26757,-0.00363 -0.52543,0.10012 -0.71593,0.28805c-0.1905,0.18793 -0.29774,0.44436 -0.29774,0.71195h-5.98633c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h18c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-5.98633c0,-0.26759 -0.10724,-0.52403 -0.29774,-0.71195c-0.1905,-0.18793 -0.44836,-0.29168 -0.71593,-0.28805zM6,8v16c0,1.105 0.895,2 2,2h14c1.105,0 2,-0.895 2,-2v-16z"></path></g></g>
-                    </svg>
+                </svg>
             </div>
         </div>
     </div>
 
     <!-- display create msg -->
-    <div id="noteCreateMsg" class="w-full bg-[#e6ffe6]">
+    <div id="noteCreateMsg" class="w-full">
         <div class="sm:flex justify-center">
             <div class="flex justify-between items-center border-2 border-[#00cc00] bg-[#e6ffe6] xl:w-[22rem] px-3 py-2 rounded">
                 <h1 class="text-sm lg:text-xl message font-semibold text-[#00cc00]">Your note is successfully created</h1>
@@ -163,7 +161,7 @@
         </div>
     </div>
     <!-- add in favourite popup -->
-    <div id="addToFavourite" class="w-full bg-[#e6ffe6]">
+    <div id="addToFavourite" class="w-full">
         <div class="sm:flex justify-center">
             <div class="flex justify-between items-center border-2 border-[#00cc00] bg-[#e6ffe6] xl:w-[22rem] px-3 py-2 rounded">
                 <h1 class="text-sm lg:text-xl message font-semibold text-[#00cc00]">Your note is add to Favourite</h1>
@@ -173,7 +171,7 @@
     </div>
 
     <!-- already in favourite popup -->
-    <div id="alreadyInFav" class="w-full bg-[#ffe6e6]">
+    <div id="alreadyInFav" class="w-full">
         <div class="sm:flex justify-center">
             <div class="flex justify-between items-center border-2 border-[#ff0000] bg-[#ffe6e6] xl:w-[22rem] px-3 py-2 rounded">
                 <h1 class="text-sm lg:text-xl message font-semibold text-[#ff0000]">Your note is already in Favourite</h1>
