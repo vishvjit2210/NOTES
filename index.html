@@ -21,6 +21,10 @@
     <script src="delete_note.js" defer></script>
     <script src="favourite.js" defer></script>
     <script src="rating.js" defer></script>
+    <script src="sidebar.js" defer></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <link rel="icon" type="image/svg+xml" href="favicons/favicon-32x32.png">
 </head>
@@ -96,11 +100,11 @@
                 <form
                     class="flex border-[3px] border-black rounded md:w-[35rem] lg:w-[50rem] mt-4 px-5 py-3 flex-col gap-1.5"
                     action="">
-                    <h5 class="text-xl require addTitle">Add Title</h5>
+                    <h5 class="text-xl require addtitle">Add Title</h5>
                     <input class="w-full description rounded h-10 px-2 py-1 bg-transparent border-[3px] border-black" type="text"
                         name="text" id="addTitle" autocomplete="off">
                     <span id="errorMessage" class="text-[#ff0000] -translate-y-1 text-sm description font-semibold"></span>
-                    <h5 class="text-xl require addTitle">Add Description</h5>
+                    <h5 class="text-xl require addtitle">Add Description</h5>
                     <textarea class="bg-transparent description rounded px-2 py-1 border-[3px] border-black" name="textarea" id="addTxt"
                         rows="3"></textarea>
                     <span id="errorMsg" class="text-[#ff0000] -translate-y-1 text-sm description font-semibold"></span>
@@ -179,5 +183,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

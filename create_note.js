@@ -102,6 +102,9 @@ function showNotes() {
             
         } else {
             notesElm.innerHTML = "Nothing to show!";
+            notesElm.style.fontSize = '20px';
+            notesElm.style.marginTop = '5px';
+            notesElm.classList.add('addtitle');
         }
         initializeStarsInReverseOrder();
         
@@ -153,7 +156,7 @@ search.addEventListener("input", function () {
 });
 
 function menuOpen(){
-    document.getElementById('menu').style.display= "block";
+    $('#menu').show();
 }
 
 function menuClose(){
@@ -181,6 +184,19 @@ function initializeStars(index, starIndex) {
         } else {
             star.classList.remove('bxs-star');
         }
+
+        if (index == 0) {
+            star.addEventListener('dblclick', function() {
+                // Remove all stars for this note
+                foundNote.star = 0; // Assuming 0 indicates no star selected
+                localStorage.setItem('notes', JSON.stringify(notes));
+
+                // Update the star display
+                stars.forEach((star) => {
+                    star.classList.remove('bxs-star'); // Remove filled star class for stars after starIndex
+                });
+            });
+        }
     });
 
     const notesString = localStorage.getItem('notes');
@@ -194,6 +210,7 @@ function initializeStars(index, starIndex) {
     foundNote.star = starIndex;
     localStorage.setItem('notes', JSON.stringify(notes));
 }
+
 
 
 

@@ -32,7 +32,7 @@ let currentFavBtnIndex;
     function showDeletePopUp(index) {
         currentDeleteIndex = index;
         currentFavBtnIndex = index;
-        document.getElementById('deletePopUp').style.display = 'block';
+        $('#deletePopUp').show();
 
         let titleInput = document.getElementById('addTitle');
         let textarea = document.getElementById('addTxt');
@@ -48,21 +48,20 @@ let currentFavBtnIndex;
             backgroundFields[i].disabled = true;
         }
 
-        document.body.style.overflowY = 'hidden';
-        PingAnimationForOpen();
+        $('body').css('overflowY','hidden');
+        PingAnimationForOpenDeletePopUp();
     }
 
     // close delete popup
     function closeDeletePopUp() {
-        let deletePopUp = document.getElementById('deletePopUp');
+        let closeDeletePopUp = $('#deletePopUp');
       
-        deletePopUp.classList.add('ping-out');
+        closeDeletePopUp.addClass('ping-out');
       
-        deletePopUp.addEventListener('animationend', function animationEndHandler() {
-        deletePopUp.classList.remove('ping-out');
-        deletePopUp.classList.remove('ping-in');
-        deletePopUp.style.display = 'none';
-        deletePopUp.removeEventListener('animationend', animationEndHandler);
+        closeDeletePopUp.on('animationend', function animationEndHandler() {
+            closeDeletePopUp.removeClass('ping-out ping-in');
+            closeDeletePopUp.hide();
+            closeDeletePopUp.off('animationend', animationEndHandler);
         });
       
         // Reference of text input and textarea
@@ -94,45 +93,42 @@ let currentFavBtnIndex;
     }
 
     // ping animation for open delete popup
-    function PingAnimationForOpen() {
-        let elementToOpen = document.getElementById('deletePopUp');
-    
+    function PingAnimationForOpenDeletePopUp() {
         // Add a class to apply the ping animation
-        elementToOpen.classList.add('ping-animation-open');
+        $('#deletePopUp').addClass('ping-animation-open');
     }
     
 function successDltMsg() {
-    let success = document.getElementById('success');
-        success.style.transform = 'translateY(0.7rem)';
-        success.style.transition = 'all 0.6s linear infinite';
-        success.style.display = 'block';
-        success.classList.add('scrollTopToDown');
+    let successDltMsg = $('#success');
+
+        successDltMsg.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
+        successDltMsg.show();
+        successDltMsg.addClass('scrollTopToDown');
         setTimeout(function () {
-            success.style.display = 'none';
-            success.classList.remove('scrollTopToDown');
+            successDltMsg.hide();
+            successDltMsg.removeClass('scrollTopToDown');
         }, 2000);
-    document.getElementById('success').classList.add('show');
+    successDltMsg.addClass('show');
 }
 
 function noteCreateMsg(){
-    let success = document.getElementById('noteCreateMsg');
+    let noteCreateMsg = $('#noteCreateMsg');
 
     if(addTitleElm.value == "" && addTxtElm.value == ""){
-        success.style.display = 'none';
+        noteCreateMsg.hide();
     } else if(addTitleElm.value == ""){
-        success.style.display = 'none';
+        noteCreateMsg.hide();
     } else if(addTxtElm.value == ""){
-        success.style.display = 'none';
+        noteCreateMsg.hide();
     } else {
-        success.style.transform = 'translateY(0.7rem)';
-        success.style.transition = 'all 0.6s linear infinite';
-        success.style.display = 'block';
-        success.classList.add('scrollTopToDown');
+        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite');
+        noteCreateMsg.show();
+        noteCreateMsg.addClass('scrollTopToDown');
         setTimeout(function () {
-            success.style.display = 'none';
-            success.classList.remove('scrollTopToDown');
+            noteCreateMsg.hide();
+            noteCreateMsg.removeClass('scrollTopToDown');
         }, 2000);
     }
-    document.getElementById('noteCreateMsg').classList.add('show');
+    noteCreateMsg.addClass('show');
 }
 

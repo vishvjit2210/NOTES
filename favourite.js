@@ -1,30 +1,3 @@
-// open side baar
-function showSidebar() {
-    
-    let sidebarContainer = document.getElementById('sidebarContainer');
-
-    sidebarContainer.style.display = 'block';
-
-    sidebarContainer.classList.add('sidebar-open');
-
-    let titleInput = document.getElementById('addTitle');
-    let textarea = document.getElementById('addTxt');
-    let addBtn = document.getElementById('addBtn');
-    
-    titleInput.disabled = true;
-    textarea.disabled = true;
-    addBtn.disabled = true;
-    
-    let backgroundFields = document.getElementsByClassName('background-field');
-    for (var i = 0; i < backgroundFields.length; i++) {
-        backgroundFields[i].disabled = true;
-    }
-
-    document.body.style.overflowY = 'hidden';
-    menuClose();
-    event.preventDefault();
-}
-
 // add note as favourite
 function favorites(index) {
     let notesObj = JSON.parse(localStorage.getItem("notes")) || [];
@@ -53,30 +26,30 @@ function favorites(index) {
 let w = window.innerWidth;
 // to show popup for added notes in favourite
 function addToFavourite(){
-    let favourite = document.getElementById('addToFavourite');
-    favourite.style.transform = 'translateY(0.7rem)';
-    favourite.style.transition = 'all 0.6s linear infinite';
-    favourite.style.display = 'block';
-    favourite.classList.add('scrollTopToDown');
+    let addToFavourite = $('#addToFavourite');
+
+    addToFavourite.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
+    addToFavourite.show();
+    addToFavourite.addClass('scrollTopToDown');
     setTimeout(function () {
-        favourite.style.display = 'none';
-        favourite.classList.remove('scrollTopToDown');
+        addToFavourite.hide();
+        addToFavourite.removeClass('scrollTopToDown');
     }, 2000);
-    document.getElementById('addToFavourite').classList.add('show');
+    addToFavourite.addClass('show');
 }
 
 // to show popup for already in favourite
 function alreadyInFav(){
-    let favourite = document.getElementById('alreadyInFav');
-        favourite.style.transform = 'translateY(0.7rem)';
-        favourite.style.transition = 'all 0.6s linear infinite';
-        favourite.style.display = 'block';
-        favourite.classList.add('scrollTopToDown');
+    // let favourite = document.getElementById('alreadyInFav');
+    let alreadyInFav = $('#alreadyInFav');
+        alreadyInFav.css('transform','translateY(0.7rem)','transition','all 0.6 linear infinite');
+        alreadyInFav.show();
+        alreadyInFav.addClass('scrollTopToDown');
         setTimeout(function () {
-            favourite.style.display = 'none';
-            favourite.classList.remove('scrollTopToDown');
+            alreadyInFav.hide();
+            alreadyInFav.removeClass('scrollTopToDown');
         }, 2000);
-        document.getElementById('alreadyInFav').classList.add('show');
+        alreadyInFav.addClass('show');
 }
 
 function showFavNotes() {
@@ -127,7 +100,10 @@ function showFavNotes() {
         //     }
         // });
     } else {
-        sidebarElm.innerHTML = "No favorite notes!";
+        sidebarElm.innerHTML = 'No favorite notes!';
+        sidebarElm.style.fontSize = '20px';
+        sidebarElm.style.marginTop = '5px';
+        sidebarElm.classList.add('addtitle');
     }
 }
 
@@ -145,33 +121,4 @@ function removeFromFavorites(index) {
         localStorage.setItem("favItem", JSON.stringify(favObj));
     
         showFavNotes();
-}
-    
-// close side baar
-function closeSidebar() {    
-    let sidebarContainer = document.getElementById('sidebarContainer');
-
-    sidebarContainer.classList.add('sidebar-close');
-
-    let titleInput = document.getElementById('addTitle');
-    let textarea = document.getElementById('addTxt');
-    let addBtn = document.getElementById('addBtn');
-    
-    titleInput.disabled = false;
-    textarea.disabled = false;
-    addBtn.disabled = false;
-
-    // Enable all background fields
-    let backgroundFields = document.getElementsByClassName('background-field');
-    for (var i = 0; i < backgroundFields.length; i++) {
-        backgroundFields[i].disabled = false;
-    }
-
-    document.body.style.overflowY = 'visible';
-
-    setTimeout(function () {
-        sidebarContainer.style.display = 'none';
-
-        sidebarContainer.classList.remove('sidebar-close');
-    }, 300);
 }
