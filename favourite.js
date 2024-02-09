@@ -42,7 +42,7 @@ function addToFavourite(){
 function alreadyInFav(){
     // let favourite = document.getElementById('alreadyInFav');
     let alreadyInFav = $('#alreadyInFav');
-        alreadyInFav.css('transform','translateY(0.7rem)','transition','all 0.6 linear infinite');
+        alreadyInFav.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
         alreadyInFav.show();
         alreadyInFav.addClass('scrollTopToDown');
         setTimeout(function () {

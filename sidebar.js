@@ -1,48 +1,57 @@
 // open side baar
 function showSidebar() {
-    
     let sidebarContainer = $('#sidebarContainer');
 
     sidebarContainer.show();
 
     sidebarContainer.addClass('sidebar-open');
 
-    let titleInput = $('#addTitle');
-    let textarea = $('#addTxt');
-    let addBtn = $('#addBtn');
-    
-    titleInput.prop('disabled', true);
-    textarea.prop('disabled', true);
-    addBtn.prop('disabled', true);
-    
+    $('#addTitle').prop('disabled', true);
+    $('#addTxt').prop('disabled', true);
+    $('#addBtn').prop('disabled', true);
+    $('#searchTxt').attr('disabled',true);
+    $('#home').prop('disabled', true);
+    $('#favButton').prop('disabled', true);
+    $('#menuBtn').prop('disabled', true);
+    $('#addBtn').removeClass('addButton');
+    $('#home').removeClass('home');
+    $('#favButton').removeClass('home');
+
     let backgroundFields = document.getElementsByClassName('background-field');
     for (var i = 0; i < backgroundFields.length; i++) {
         backgroundFields[i].disabled = true;
+        $('.background-field').removeClass('addButton');
     }
 
     $('body').css('overflowY','hidden');
+    $('#main').fadeTo(700,0.5);
     menuClose();
     event.preventDefault();
 }
 
 // close side baar
-function closeSidebar() {    
+function closeSidebar() { 
     let closeSidebar = $('#sidebarContainer');
 
-    closeSidebar.addClass('sidebar-close');
-
-    let titleInput = document.getElementById('addTitle');
-    let textarea = document.getElementById('addTxt');
-    let addBtn = document.getElementById('addBtn');
+    closeSidebar.addClass('sidebar-close');    
     
-    titleInput.disabled = false;
-    textarea.disabled = false;
-    addBtn.disabled = false;
-
+    $('#addTitle').prop('disabled', false);
+    $('#addTxt').prop('disabled', false);
+    $('#addBtn').prop('disabled', false);
+    $('#searchTxt').attr('disabled',false);
+    $('#home').prop('disabled', false);
+    $('#favButton').prop('disabled', false);
+    $('#menuBtn').prop('disabled', false);
+    $('#addBtn').addClass('addButton');
+    $('#searchTxt').addClass('search');
+    $('#home').addClass('home');
+    $('#favButton').addClass('home');
+    
     // Enable all background fields
     let backgroundFields = document.getElementsByClassName('background-field');
     for (var i = 0; i < backgroundFields.length; i++) {
         backgroundFields[i].disabled = false;
+        $('.background-field').addClass('addButton');
     }
 
     $('body').css('overflow','visible');
@@ -51,4 +60,11 @@ function closeSidebar() {
         closeSidebar.hide();
         closeSidebar.removeClass('sidebar-close');
     }, 300);
+    $('#main').fadeTo(800,1);
 }
+
+$('#home').addClass('home');
+$('#favButton').addClass('home');
+$('#searchTxt').addClass('search');
+$('#addBtn').addClass('addButton');
+$('.background-field').addClass('addButton');

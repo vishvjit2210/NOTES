@@ -229,3 +229,25 @@ function initializeStarsInReverseOrder() {
 
 // Call the function to initialize stars in reverse order after the page has loaded
 window.onload = initializeStarsInReverseOrder;
+
+
+function noteCreateMsg(){
+    let noteCreateMsg = $('#noteCreateMsg');
+
+    if(addTitleElm.value == "" && addTxtElm.value == ""){
+        noteCreateMsg.hide();
+    } else if(addTitleElm.value == ""){
+        noteCreateMsg.hide();
+    } else if(addTxtElm.value == ""){
+        noteCreateMsg.hide();
+    } else {
+        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite');
+        noteCreateMsg.show();
+        noteCreateMsg.addClass('scrollTopToDown');
+        setTimeout(function () {
+            noteCreateMsg.hide();
+            noteCreateMsg.removeClass('scrollTopToDown');
+        }, 2000);
+    }
+    noteCreateMsg.addClass('show');
+}

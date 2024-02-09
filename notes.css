@@ -288,3 +288,17 @@ body{
 .noteCard:hover .card-text[title]:hover::after {
     display: block;
 } */
+
+.addButton:active{
+    transform: scale(0.9);
+
+}
+.search:focus {
+    outline: none; /* Remove default outline */
+    outline: 2px solid #8a3ab9; /* Set custom outline */
+    outline-offset: 2px; /* Adjust outline offset if needed */
+}
+
+.home:hover{
+    color: #ff1a1a;
+}

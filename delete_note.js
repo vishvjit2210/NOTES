@@ -34,22 +34,27 @@ let currentFavBtnIndex;
         currentFavBtnIndex = index;
         $('#deletePopUp').show();
 
-        let titleInput = document.getElementById('addTitle');
-        let textarea = document.getElementById('addTxt');
-        let addBtn = document.getElementById('addBtn');
-
-        titleInput.disabled = true;
-        textarea.disabled = true;
-        addBtn.disabled = true;
+        $('#addTitle').prop('disabled', true);
+        $('#addTxt').prop('disabled', true);
+        $('#addBtn').prop('disabled', true);
+        $('#searchTxt').attr('disabled',true);
+        $('#home').prop('disabled', true);
+        $('#favButton').prop('disabled', true);
+        $('#menuBtn').prop('disabled', true);
+        $('#addBtn').removeClass('addButton');
+        $('#home').removeClass('home');
+        $('#favButton').removeClass('home');
         
         let backgroundFields = document.getElementsByClassName('background-field');
     
         for (var i = 0; i < backgroundFields.length; i++) {
             backgroundFields[i].disabled = true;
+            $('.background-field').removeClass('addButton');
         }
 
         $('body').css('overflowY','hidden');
         PingAnimationForOpenDeletePopUp();
+        $('#main').fadeTo(800,0.6);
     }
 
     // close delete popup
@@ -65,22 +70,28 @@ let currentFavBtnIndex;
         });
       
         // Reference of text input and textarea
-        let titleInput = document.getElementById('addTitle');
-        let textarea = document.getElementById('addTxt');
-        let addBtn = document.getElementById('addBtn');
-      
-        // Enable the text input and textarea
-        titleInput.disabled = false;
-        textarea.disabled = false;
-        addBtn.disabled = false;
+        $('#addTitle').prop('disabled', false);
+        $('#addTxt').prop('disabled', false);
+        $('#addBtn').prop('disabled', false);
+        $('#searchTxt').attr('disabled',false);
+        $('#home').prop('disabled', false);
+        $('#favButton').prop('disabled', false);
+        $('#menuBtn').prop('disabled', false);
+        $('#addBtn').addClass('addButton');
+        $('#searchTxt').addClass('search');
+        $('#home').addClass('home');
+        $('#favButton').addClass('home');
+        console.log(searchTxt);
       
         // Enable all background fields
         let backgroundFields = document.getElementsByClassName('background-field');
         for (var i = 0; i < backgroundFields.length; i++) {
-          backgroundFields[i].disabled = false;
+            backgroundFields[i].disabled = false;
+            $('.background-field').addClass('addButton');
         }
       
         document.body.style.overflowY = 'visible';
+        $('#main').fadeTo(800,1);
       }
       
 
@@ -111,24 +122,8 @@ function successDltMsg() {
     successDltMsg.addClass('show');
 }
 
-function noteCreateMsg(){
-    let noteCreateMsg = $('#noteCreateMsg');
-
-    if(addTitleElm.value == "" && addTxtElm.value == ""){
-        noteCreateMsg.hide();
-    } else if(addTitleElm.value == ""){
-        noteCreateMsg.hide();
-    } else if(addTxtElm.value == ""){
-        noteCreateMsg.hide();
-    } else {
-        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite');
-        noteCreateMsg.show();
-        noteCreateMsg.addClass('scrollTopToDown');
-        setTimeout(function () {
-            noteCreateMsg.hide();
-            noteCreateMsg.removeClass('scrollTopToDown');
-        }, 2000);
-    }
-    noteCreateMsg.addClass('show');
-}
-
+$('#home').addClass('home');
+$('#favButton').addClass('home');
+$('#searchTxt').addClass('search');
+$('#addBtn').addClass('addButton');
+$('.background-field').addClass('addButton');
