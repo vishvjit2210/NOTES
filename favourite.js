@@ -28,31 +28,23 @@ let w = window.innerWidth;
 function addToFavourite(){
     let addToFavourite = $('#addToFavourite');
 
-    addToFavourite.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
-    addToFavourite.show();
-    addToFavourite.addClass('scrollTopToDown');
+    addToFavourite.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
     setTimeout(function () {
-        addToFavourite.hide();
-        addToFavourite.removeClass('scrollTopToDown');
+        addToFavourite.removeClass('scrollTopToDown').hide();
     }, 2000);
-    addToFavourite.addClass('show');
 }
 
 // to show popup for already in favourite
 function alreadyInFav(){
-    // let favourite = document.getElementById('alreadyInFav');
     let alreadyInFav = $('#alreadyInFav');
-        alreadyInFav.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
-        alreadyInFav.show();
-        alreadyInFav.addClass('scrollTopToDown');
+        alreadyInFav.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
         setTimeout(function () {
-            alreadyInFav.hide();
-            alreadyInFav.removeClass('scrollTopToDown');
+            alreadyInFav.removeClass('scrollTopToDown').hide();
         }, 2000);
-        alreadyInFav.addClass('show');
 }
 
 function showFavNotes() {
+    let sidebarElm = document.getElementById("sidebar");
     let favItem = localStorage.getItem("favItem");
     let favObj = [];
     
@@ -74,7 +66,7 @@ function showFavNotes() {
         }
     });
 
-    let sidebarElm = document.getElementById("sidebar");
+    
     if (favObj.length !== 0) {
         sidebarElm.innerHTML = sidebarItem;
 
@@ -100,10 +92,7 @@ function showFavNotes() {
         //     }
         // });
     } else {
-        sidebarElm.innerHTML = 'No favorite notes!';
-        sidebarElm.style.fontSize = '20px';
-        sidebarElm.style.marginTop = '5px';
-        sidebarElm.classList.add('addtitle');
+        $('#sidebar').html('No Favourite Notes!').addClass('addtitle text-xl mt-2');
     }
 }
 

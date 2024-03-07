@@ -1,21 +1,19 @@
 // open side baar
 function showSidebar() {
+    $('.bx-star').each(function() {
+        $(this).attr('data-disabled', 'true').css('pointerEvents','none');
+    });
+
     let sidebarContainer = $('#sidebarContainer');
 
     sidebarContainer.show();
 
     sidebarContainer.addClass('sidebar-open');
 
-    $('#addTitle').prop('disabled', true);
-    $('#addTxt').prop('disabled', true);
-    $('#addBtn').prop('disabled', true);
+    $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
     $('#searchTxt').attr('disabled',true);
-    $('#home').prop('disabled', true);
-    $('#favButton').prop('disabled', true);
-    $('#menuBtn').prop('disabled', true);
     $('#addBtn').removeClass('addButton');
-    $('#home').removeClass('home');
-    $('#favButton').removeClass('home');
+    $('#home, #favButton').removeClass('home');
 
     let backgroundFields = document.getElementsByClassName('background-field');
     for (var i = 0; i < backgroundFields.length; i++) {
@@ -31,21 +29,19 @@ function showSidebar() {
 
 // close side baar
 function closeSidebar() { 
-    let closeSidebar = $('#sidebarContainer');
+    
+    $('.bx-star').each(function() {
+        $(this).attr('data-disabled','false').css('pointerEvents','visible');
+    });
 
+    let closeSidebar = $('#sidebarContainer');
     closeSidebar.addClass('sidebar-close');    
     
-    $('#addTitle').prop('disabled', false);
-    $('#addTxt').prop('disabled', false);
-    $('#addBtn').prop('disabled', false);
-    $('#searchTxt').attr('disabled',false);
-    $('#home').prop('disabled', false);
-    $('#favButton').prop('disabled', false);
-    $('#menuBtn').prop('disabled', false);
-    $('#addBtn').addClass('addButton');
-    $('#searchTxt').addClass('search');
-    $('#home').addClass('home');
-    $('#favButton').addClass('home');
+        $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
+        $('#searchTxt').attr('disabled',false);
+        $('#addBtn').addClass('addButton');
+        $('#searchTxt').addClass('search');
+        $('#home, #favButton').addClass('home');
     
     // Enable all background fields
     let backgroundFields = document.getElementsByClassName('background-field');
@@ -57,14 +53,12 @@ function closeSidebar() {
     $('body').css('overflow','visible');
 
     setTimeout(function () {
-        closeSidebar.hide();
-        closeSidebar.removeClass('sidebar-close');
+        closeSidebar.removeClass('sidebar-close').hide();
     }, 300);
     $('#main').fadeTo(800,1);
 }
 
-$('#home').addClass('home');
-$('#favButton').addClass('home');
+$('#home, #favButton').addClass('home');    
 $('#searchTxt').addClass('search');
 $('#addBtn').addClass('addButton');
 $('.background-field').addClass('addButton');

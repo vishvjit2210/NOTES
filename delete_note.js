@@ -30,20 +30,17 @@ function deleteNote(index) {
 let currentDeleteIndex;
 let currentFavBtnIndex;
     function showDeletePopUp(index) {
+        $('.bx-star').each(function(){
+            $(this).attr('data-disabled','true').css('pointerEvents','none');
+        });
         currentDeleteIndex = index;
         currentFavBtnIndex = index;
         $('#deletePopUp').show();
 
-        $('#addTitle').prop('disabled', true);
-        $('#addTxt').prop('disabled', true);
-        $('#addBtn').prop('disabled', true);
+        $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
         $('#searchTxt').attr('disabled',true);
-        $('#home').prop('disabled', true);
-        $('#favButton').prop('disabled', true);
-        $('#menuBtn').prop('disabled', true);
         $('#addBtn').removeClass('addButton');
-        $('#home').removeClass('home');
-        $('#favButton').removeClass('home');
+        $('#home, #favButton').removeClass('home');
         
         let backgroundFields = document.getElementsByClassName('background-field');
     
@@ -59,30 +56,23 @@ let currentFavBtnIndex;
 
     // close delete popup
     function closeDeletePopUp() {
+
+        $('.bx-star').each(function(){
+            $(this).attr('data-disabled','false').css('pointerEvents','visible');
+        });
+        
         let closeDeletePopUp = $('#deletePopUp');
-      
         closeDeletePopUp.addClass('ping-out');
-      
         closeDeletePopUp.on('animationend', function animationEndHandler() {
-            closeDeletePopUp.removeClass('ping-out ping-in');
-            closeDeletePopUp.hide();
-            closeDeletePopUp.off('animationend', animationEndHandler);
+            closeDeletePopUp.removeClass('ping-out ping-in').off('animationend', animationEndHandler).hide();
         });
       
         // Reference of text input and textarea
-        $('#addTitle').prop('disabled', false);
-        $('#addTxt').prop('disabled', false);
-        $('#addBtn').prop('disabled', false);
+        $('#addTitle, #addTxt,#addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
         $('#searchTxt').attr('disabled',false);
-        $('#home').prop('disabled', false);
-        $('#favButton').prop('disabled', false);
-        $('#menuBtn').prop('disabled', false);
-        $('#addBtn').addClass('addButton');
-        $('#searchTxt').addClass('search');
-        $('#home').addClass('home');
-        $('#favButton').addClass('home');
-        console.log(searchTxt);
-      
+        $('#addBtn,#searchTxt').addClass('addButton, search');
+        $('#home, #favButton').addClass('home');
+        
         // Enable all background fields
         let backgroundFields = document.getElementsByClassName('background-field');
         for (var i = 0; i < backgroundFields.length; i++) {
@@ -112,18 +102,13 @@ let currentFavBtnIndex;
 function successDltMsg() {
     let successDltMsg = $('#success');
 
-        successDltMsg.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite');
-        successDltMsg.show();
-        successDltMsg.addClass('scrollTopToDown');
+        successDltMsg.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
         setTimeout(function () {
-            successDltMsg.hide();
-            successDltMsg.removeClass('scrollTopToDown');
+            successDltMsg.removeClass('scrollTopToDown').hide();
         }, 2000);
-    successDltMsg.addClass('show');
 }
 
-$('#home').addClass('home');
-$('#favButton').addClass('home');
+$('#home, #favButton').addClass('home');
 $('#searchTxt').addClass('search');
 $('#addBtn').addClass('addButton');
 $('.background-field').addClass('addButton');

@@ -46,19 +46,19 @@ function showNotes() {
             html += `
                 <div id="notesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-64 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title_${index}" class="card-title text-lg title text-black">${element.title}</h5>   
-                        <p id="description_${index}" class="card-text description pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title title text-lg text-black">${element.title}</h5>   
+                        <p id="description_${index}" class="card-text description text-base pt-1 pb-2">${element.text}</p>
                         <div class="flex">
-                            <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn buttons border-[3px] border-black background-field h-9 w-28 transition bg-[#1a1aff] text-white px-3 rounded">Delete</button>
-                            <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons border-[3px] border-[#ff0000] background-field bg-black transition text-white ml-3 h-9 py-1 w-28 px-3 rounded">Favourite</button>
+                            <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn buttons border-[3px] border-black background-field h-9 w-28 transition bg-[#1a1aff] text-white px-3 rounded text-base">Delete</button>
+                            <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons border-[3px] border-[#ff0000] background-field bg-black transition text-white ml-3 h-9 py-1 w-28 px-3 rounded text-base">Favourite</button>
                         </div>
                         <div class="flex items-center justify-between">
                         <div class="rating" id="starRating_${index}" data-note="${index}">
-                            <i onclick="initializeStars(${index}, 1)" class='bx bx-star' data-index="1"></i>
-                            <i onclick="initializeStars(${index}, 2)" class='bx bx-star' data-index="2"></i>
-                            <i onclick="initializeStars(${index}, 3)" class='bx bx-star' data-index="3"></i>
-                            <i onclick="initializeStars(${index}, 4)" class='bx bx-star' data-index="4"></i>
-                            <i onclick="initializeStars(${index}, 5)" class='bx bx-star' data-index="5"></i>
+                        <i onclick="initializeStars(${index}, 1)" class='bx bx-star' data-index="1"></i>
+                        <i onclick="initializeStars(${index}, 2)" class='bx bx-star' data-index="2"></i>
+                        <i onclick="initializeStars(${index}, 3)" class='bx bx-star' data-index="3"></i>
+                        <i onclick="initializeStars(${index}, 4)" class='bx bx-star' data-index="4"></i>
+                        <i onclick="initializeStars(${index}, 5)" class='bx bx-star' data-index="5"></i>                        
                         </div>                   
                             <div>
                                 <p id="Time${index}" class="py-2 description font-semibold text-sm float-right">${getMinutesDifference(new Date(element.time), new Date())} </p>
@@ -101,10 +101,8 @@ function showNotes() {
             // });
             
         } else {
-            notesElm.innerHTML = "Nothing to show!";
-            notesElm.style.fontSize = '20px';
-            notesElm.style.marginTop = '5px';
-            notesElm.classList.add('addtitle');
+            // notesElm.innerHTML = "Nothing to show!";
+            $('#notes').text('Nothing To Show!').addClass('addtitle text-xl mt-2');
         }
         initializeStarsInReverseOrder();
         
@@ -160,21 +158,22 @@ function menuOpen(){
 }
 
 function menuClose(){
-    let Menu = document.getElementById('menu');
+    let Menu = $('#menu');
 
     // Add the animation class to trigger the animation
-    Menu.classList.add('menu-close');
+    Menu.addClass('menu-close');
 
     // Use a setTimeout to delay hiding the menu until the animation completes
     setTimeout(function () {
-        Menu.style.display = 'none';
         // Remove the animation class to reset it for the next time
-        Menu.classList.remove('menu-close');
+        Menu.removeClass('menu-close');
+        Menu.hide();
     }, 500);
 }
 
 // Function to initialize the star ratings for a specific note
 function initializeStars(index, starIndex) {
+    
     const starRatingContainer = document.getElementById(`starRating_${index}`);
     const stars = starRatingContainer.querySelectorAll('.bx-star');
 
@@ -241,13 +240,9 @@ function noteCreateMsg(){
     } else if(addTxtElm.value == ""){
         noteCreateMsg.hide();
     } else {
-        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite');
-        noteCreateMsg.show();
-        noteCreateMsg.addClass('scrollTopToDown');
+        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite').addClass('scrollTopToDown show').show();
         setTimeout(function () {
-            noteCreateMsg.hide();
-            noteCreateMsg.removeClass('scrollTopToDown');
+            noteCreateMsg.removeClass('scrollTopToDown').hide();
         }, 2000);
     }
-    noteCreateMsg.addClass('show');
 }
