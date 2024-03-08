@@ -28,7 +28,7 @@ let w = window.innerWidth;
 function addToFavourite(){
     let addToFavourite = $('#addToFavourite');
 
-    addToFavourite.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
+    addToFavourite.addClass('addToFavourite scrollTopToDown show').show();
     setTimeout(function () {
         addToFavourite.removeClass('scrollTopToDown').hide();
     }, 2000);
@@ -37,7 +37,7 @@ function addToFavourite(){
 // to show popup for already in favourite
 function alreadyInFav(){
     let alreadyInFav = $('#alreadyInFav');
-        alreadyInFav.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
+        alreadyInFav.addClass('alreadyInFav scrollTopToDown show').show();
         setTimeout(function () {
             alreadyInFav.removeClass('scrollTopToDown').hide();
         }, 2000);

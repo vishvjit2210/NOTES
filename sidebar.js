@@ -10,8 +10,7 @@ function showSidebar() {
 
     sidebarContainer.addClass('sidebar-open');
 
-    $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
-    $('#searchTxt').attr('disabled',true);
+    $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
     $('#addBtn').removeClass('addButton');
     $('#home, #favButton').removeClass('home');
 
@@ -37,8 +36,7 @@ function closeSidebar() {
     let closeSidebar = $('#sidebarContainer');
     closeSidebar.addClass('sidebar-close');    
     
-        $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
-        $('#searchTxt').attr('disabled',false);
+        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
         $('#addBtn').addClass('addButton');
         $('#searchTxt').addClass('search');
         $('#home, #favButton').addClass('home');
@@ -60,5 +58,4 @@ function closeSidebar() {
 
 $('#home, #favButton').addClass('home');    
 $('#searchTxt').addClass('search');
-$('#addBtn').addClass('addButton');
-$('.background-field').addClass('addButton');
+$('#addBtn, .background-field').addClass('addButton');

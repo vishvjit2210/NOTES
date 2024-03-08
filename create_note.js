@@ -240,7 +240,7 @@ function noteCreateMsg(){
     } else if(addTxtElm.value == ""){
         noteCreateMsg.hide();
     } else {
-        noteCreateMsg.css('transform','translateY(0.8rem)','transition','all 0.6s linear infinite').addClass('scrollTopToDown show').show();
+        noteCreateMsg.addClass('noteCteateMsg scrollTopToDown show').show();
         setTimeout(function () {
             noteCreateMsg.removeClass('scrollTopToDown').hide();
         }, 2000);

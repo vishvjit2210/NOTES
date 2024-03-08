@@ -16,7 +16,6 @@ function deleteNote(index) {
     }
 
     localStorage.removeItem(`userRating_${originalIndex}`);
-
     localStorage.setItem("notes", JSON.stringify(notesObj.reverse()));
     localStorage.setItem("favItem", JSON.stringify(favObj));
 
@@ -36,9 +35,7 @@ let currentFavBtnIndex;
         currentDeleteIndex = index;
         currentFavBtnIndex = index;
         $('#deletePopUp').show();
-
-        $('#addTitle, #addTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
-        $('#searchTxt').attr('disabled',true);
+        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
         $('#addBtn').removeClass('addButton');
         $('#home, #favButton').removeClass('home');
         
@@ -68,9 +65,9 @@ let currentFavBtnIndex;
         });
       
         // Reference of text input and textarea
-        $('#addTitle, #addTxt,#addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
-        $('#searchTxt').attr('disabled',false);
-        $('#addBtn,#searchTxt').addClass('addButton, search');
+        $('#addTitle, #addTxt, #searchTxt,#addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
+        $('#addBtn').addClass('addButton');
+        $('#searchTxt').addClass('search');
         $('#home, #favButton').addClass('home');
         
         // Enable all background fields
@@ -102,7 +99,7 @@ let currentFavBtnIndex;
 function successDltMsg() {
     let successDltMsg = $('#success');
 
-        successDltMsg.css('transform','translateY(0.8rem)','transition','all 0.6 linear infinite').addClass('scrollTopToDown show').show();
+        successDltMsg.addClass('success scrollTopToDown show').show();
         setTimeout(function () {
             successDltMsg.removeClass('scrollTopToDown').hide();
         }, 2000);
