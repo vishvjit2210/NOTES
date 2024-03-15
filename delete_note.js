@@ -53,7 +53,6 @@ let currentFavBtnIndex;
 
     // close delete popup
     function closeDeletePopUp() {
-
         $('.bx-star').each(function(){
             $(this).attr('data-disabled','false').css('pointerEvents','visible');
         });
@@ -85,8 +84,8 @@ let currentFavBtnIndex;
     function deleteItem() {
         // delete note based on the currentDeleteIndex
         deleteNote(currentDeleteIndex);
-        
         closeDeletePopUp();
+        
         successDltMsg();
     }
 

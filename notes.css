@@ -45,7 +45,7 @@ body{
 #noteCreateMsg.show,#success.show,#alreadyInFav.show,#addToFavourite.show {
     visibility: visible;
     transform: translateY(0);
-}   
+}
 
 .rating {
     display: flex;
@@ -147,11 +147,20 @@ body{
 @keyframes scrollTopToDown {
     0% {
         transform: translateY(-8rem);
-    }
+    } 
 }
 .scrollTopToDown {
     animation: scrollTopToDown 0.7s linear 1;
 }
+
+/* @keyframes scrollDownToTop {
+    0%{
+        transform: translateY(-8rem);
+    }
+} */
+/* .scrollDownToTop{
+    animation: scrollDownToTop 0.7 linear 1;
+} */
 
 
 @keyframes menuOpen {
@@ -192,103 +201,6 @@ body{
     }
 }
 
-/* .card-title[title]:hover::after{
-    content: attr(title);
-    color: black;
-    background-color: #d9d9d9;
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 95%;
-    left: 0;
-    width: 100%;    
-    border: 3px solid black;
-    z-index: 1;
-    animation: menuOpen 0.5s linear 1;
-} 
-
-.card-text:hover::after{
-    content: attr(title);
-    color: black;
-    background-color: #d9d9d9;
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 28%;
-    overflow-wrap: break-word;
-    left: 0;
-    width: 100%;    
-    border: 3px solid black;
-    z-index: 1;
-    animation: menuOpen 0.5s linear 1;
-} */
-
-/* media query for hover full title */
-/* @media (max-width: 640px) {
-    .card-title[title]:hover::after
-     {
-        animation: menuOpen 0.5s linear 1;
-        width: 100%;    
-        top: -2rem;
-        overflow: auto;
-        border: 3px solid black;
-    }
-} */
-
-/* media query for hover full description */
-/* @media (max-width: 640px) {
-    .card-text[title]:hover::after
-     {
-        animation: menuOpen 0.5s linear 1;
-        width: 100%;    
-        bottom: 3rem;
-        overflow: auto;
-        border: 3px solid black;
-    }
-} */
-
-/* .noteCard {
-    position: relative;
-    display: inline-block;
-}
-
-.card-title[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    display: none;
-    padding: 5px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.noteCard:hover .card-title[title]:hover::after {
-    display: block;
-}
-
-.card-text[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    display: none;
-    padding: 5px;
-    
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.noteCard:hover .card-text[title]:hover::after {
-    display: block;
-} */
-
 .addButton:active{
     transform: scale(0.9);
 
@@ -301,13 +213,4 @@ body{
 
 .home:hover{
     color: #ff1a1a;
-}
-.noteCreateMsg,.success,.alreadyInFav,.addToFavourite {
-    transform: translateY(1.5rem);
-transition: all 0.6s linear infinite;
-}
-
-.errormsg{
-    /* border: 3px solid #ff0000; */
-    border: 3px solid #ff0000;
 }

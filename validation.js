@@ -7,6 +7,7 @@ function addBtnValidation() {
     let addTitle = $('#addTitle').css('border','3px solid black');
     let addTxt = $('#addTxt').css('border','3px solid black');
 
+
     if (addTitleElm.value == "" && addTxtElm.value == "") {
         errorMessage.text('Please enter a Title.').show();
         errorMsg.text('Please enter a Description.').show();

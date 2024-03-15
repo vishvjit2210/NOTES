@@ -39,7 +39,7 @@ function alreadyInFav(){
     let alreadyInFav = $('#alreadyInFav');
         alreadyInFav.addClass('alreadyInFav scrollTopToDown show').show();
         setTimeout(function () {
-            alreadyInFav.removeClass('scrollTopToDown').hide();
+            alreadyInFav.removeClass('show').hide();
         }, 2000);
 }
 
@@ -69,28 +69,6 @@ function showFavNotes() {
     
     if (favObj.length !== 0) {
         sidebarElm.innerHTML = sidebarItem;
-
-        // // Event listeners for titles in the sidebar
-        // favObj.forEach((element, index) => {
-        //     let titleElm = document.getElementById(`title_${index}`);
-        //     let descriptionElm = document.getElementById(`description_${index}`);
-        //     if (titleElm || descriptionElm) {
-        //         titleElm.addEventListener('mouseover', function () {
-        //             const fullTitle = element.title;
-        //             const maxLength = 15;
-        //             if (fullTitle.length > maxLength) {
-        //                 titleElm.setAttribute('title', fullTitle);
-        //             }
-        //         });
-        //         descriptionElm.addEventListener('mouseover', function() {
-        //             const fullDescription = element.text;
-        //             const maxLength = 15;
-        //             if(fullDescription.length > maxLength) {
-        //                 descriptionElm.setAttribute('title', fullDescription);
-        //             }
-        //         });
-        //     }
-        // });
     } else {
         $('#sidebar').html('No Favourite Notes!').addClass('addtitle text-xl mt-2');
     }

@@ -75,31 +75,6 @@ function showNotes() {
         if (notesObj.length !== 0) {
             notesElm.innerHTML = html;
             
-            // notesObj.forEach((element, index) => {
-            //     let titleElm = document.getElementById(`title_${index}`);
-            //     let descriptionElm = document.getElementById(`description_${index}`);
-            
-            //     if (titleElm) {
-            //         titleElm.addEventListener('mouseover', function () {
-            //             const fullTitle = element.title;
-            //             const maxLength = 15;
-            //             if (fullTitle.length > maxLength) {
-            //                 titleElm.setAttribute('title', fullTitle);
-            //             }
-            //         });
-            //     }
-            
-            //     if (descriptionElm) {
-            //         descriptionElm.addEventListener('mouseover', function() {
-            //             const fullDescription = element.text;
-            //             const maxLength = 15;
-            //             if (fullDescription.length > maxLength) {
-            //                 descriptionElm.setAttribute('title', fullDescription);
-            //             }
-            //         });
-            //     }
-            // });
-            
         } else {
             // notesElm.innerHTML = "Nothing to show!";
             $('#notes').text('Nothing To Show!').addClass('addtitle text-xl mt-2');
