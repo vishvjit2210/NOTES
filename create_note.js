@@ -46,8 +46,8 @@ function showNotes() {
             html += `
                 <div id="notesCard${index}" class="noteCard hover:scale-105 transition mt-4 w-64 border-[3px] border-black px-2 pt-2 rounded">
                     <div class="card-body">
-                        <h5 id="title_${index}" class="card-title title text-lg text-black">${element.title}</h5>   
-                        <p id="description_${index}" class="card-text description text-base pt-1 pb-2">${element.text}</p>
+                        <h5 id="title_${index}" class="card-title title text-lg text-black w-full truncate" title="${element.title}">${element.title}</h5>   
+                        <p id="description_${index}" class="card-text description text-base pt-1 pb-2 w-full truncate" title="${element.text}">${element.text}</p>
                         <div class="flex">
                             <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn buttons border-[3px] border-black background-field h-9 w-28 transition bg-[#1a1aff] text-white px-3 rounded text-base">Delete</button>
                             <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons border-[3px] border-[#ff0000] background-field bg-black transition text-white ml-3 h-9 py-1 w-28 px-3 rounded text-base">Favourite</button>
@@ -69,7 +69,7 @@ function showNotes() {
                 `;
             }
         });
-        
+
         
         let notesElm = document.getElementById("notes");
         if (notesObj.length !== 0) {
@@ -80,7 +80,6 @@ function showNotes() {
             $('#notes').text('Nothing To Show!').addClass('addtitle text-xl mt-2');
         }
         initializeStarsInReverseOrder();
-        
 
     function updateNoteTimes() {
         notesObj.forEach(function (element, index) {
