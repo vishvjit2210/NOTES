@@ -49,7 +49,7 @@ function checkInputField() {
         successLoggedInMsg();
         $("#username, #password, #confirm-password").val('');
         setTimeout(() => {
-            window.location.href = 'http://127.0.0.1:5500/magicNote.html';
+            window.location.href = 'magicNote.html';
         }, 1500);
     }
 }
