@@ -4,6 +4,7 @@ function deleteNote(index) {
 
     notesObj.reverse();
 
+    
     let deletedNote = notesObj[index];
 
     notesObj.splice(index, 1);
@@ -82,25 +83,48 @@ let currentFavBtnIndex;
       
 
     function deleteItem() {
-        // delete note based on the currentDeleteIndex
-        deleteNote(currentDeleteIndex);
-        closeDeletePopUp();
+            let yesBtn = $('#yesButton');
+            yesBtn.html('Deleting...').addClass('text-md');
+
+            let noBtn = $('#noButton');
+            noBtn.attr('disabled','true');
+            
+            let closeBtn = $('#closeBtn');
+            closeBtn.attr('disabled','true');
         
-        successDltMsg();
+        // delete note based on the currentDeleteIndex
+        setTimeout(() => {
+            yesBtn.html('Yes').addClass('text-xl');
+            noBtn.prop('disabled',false);
+            closeBtn.prop('disabled',false);
+            deleteNote(currentDeleteIndex);
+            closeDeletePopUp();
+            successDltMsg();
+        }, 1000);
+        
     }
 
-    // ping animation for open delete popup
     function PingAnimationForOpenDeletePopUp() {
-        // Add a class to apply the ping animation
         $('#deletePopUp').addClass('ping-animation-open');
     }
     
 function successDltMsg() {
-    let successDltMsg = $('#success');
+    let successDltMsg = $('#noteCreateMsg');
+
+    let noteContainer = $('#noteContainer');
+    noteContainer.addClass('flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6]');
+    
+    let createMsg = $('#createMsg');
+    createMsg.html('Your note is successfully deleted').css('color', '#cc0000');
+    
+    const SVG = `<i class='bx bxs-trash text-lg lg:text-2xl text-[#cc0000]'></i>`;
+    $('#SVG').html(SVG);
 
         successDltMsg.addClass('success scrollTopToDown show').show();
+    // timeout function for hide animation message
         setTimeout(function () {
             successDltMsg.removeClass('scrollTopToDown').hide();
+            noteContainer.removeClass('flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6]');
         }, 2000);
 }
 

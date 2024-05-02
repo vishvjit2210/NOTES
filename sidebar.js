@@ -1,5 +1,8 @@
 // open side baar
 function showSidebar() {
+    const homeButton = $('#home');
+    const favButton = $('#favButton');
+    console.log(favButton);
     $('.bx-star').each(function() {
         $(this).attr('data-disabled', 'true').css('pointerEvents','none');
     });
@@ -10,7 +13,9 @@ function showSidebar() {
 
     sidebarContainer.addClass('sidebar-open');
 
-    $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
+    homeButton.addClass('hover:scale-100');
+    favButton.addClass('hover:scale-100');
+    $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').attr('disabled', true);
     $('#addBtn').removeClass('addButton');
     $('#home, #favButton').removeClass('home');
 
@@ -28,15 +33,18 @@ function showSidebar() {
 
 // close side baar
 function closeSidebar() { 
-    
+    const favButton = $('#favButton');
+    const homeButton = $('#home');
     $('.bx-star').each(function() {
         $(this).attr('data-disabled','false').css('pointerEvents','visible');
     });
 
     let closeSidebar = $('#sidebarContainer');
     closeSidebar.addClass('sidebar-close');    
-    
-        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
+
+        favButton.addClass('hover:scale-105');
+        homeButton.addClass('hover:scale-105');
+        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').attr('disabled', false);
         $('#addBtn').addClass('addButton');
         $('#searchTxt').addClass('search');
         $('#home, #favButton').addClass('home');
