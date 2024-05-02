@@ -48,7 +48,7 @@ function checkInputField() {
         removePicture();
         successLoggedInMsg();
         $("#username, #password, #confirm-password").val('');
-        window.location.href = 'http://127.0.0.1:5500/magin_note.html';
+        window.location.href = 'http://127.0.0.1:5500/magic_note.html';
     }
 }
 
