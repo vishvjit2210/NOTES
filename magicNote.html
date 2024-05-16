@@ -56,7 +56,7 @@
         <div class="containder flex justify-center">
             <div class="px-3 mt-5">
                 <div>
-                    <button id="createNoteButton" onclick="createNoteButton()" class="mb-5 hover:scale-105 transition flex items-center buttons gap-2 p-2 rounded-md bg-white shadow-lg shadow-gray-600"><span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></span> Click here to create note</button>
+                    <button id="createNoteButton" onclick="createNoteButton()" class="mb-5 hover:scale-105 transition flex items-center buttons gap-2 p-2 rounded-md bg-white shadow-lg shadow-gray-600 focus:outline-none"><span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></span> Click here to create note</button>
                 </div>
                 <div class="flex flex-col justify-center items-center">
                     <form id="createNoteBox" class="hidden w-full mb-5 space-y-5 shadow-xl shadow-gray-400 mt-3 bg-white rounded-lg py-8 px-10" action="">
@@ -76,7 +76,7 @@
                     </form>
                     <div>
                         <h1 class="text-2xl font-semibold pt-2 pb-1 w-full welcome border-b-4 rounded border-[#e60000]">Your Notes!</h1>
-                        <div id="notes" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 md:gap-5 rounded"> </div>
+                        <div id="notes" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-4 md:gap-5 rounded"> </div>
                         <p id="note_message" class="mt-5 text-xl font-bold description"></p>
                     </div>
                 </div>
