@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#imageUpload').prop('disabled', false);
             $('#removeBtn').prop('disabled', false);
             submitButton.disabled = false;
-            submitButton.style = 'background-color: #9999ff;'
+            submitButton.style = 'background-color: #ffff4d;'
             submitButton.innerHTML = 'Login';
             login();
         }, 1500);

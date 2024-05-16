@@ -33,8 +33,8 @@
 </head>
 <body class="bg-zinc-200">
     <form id="loginForm" class="flex justify-center items-center h-[100vh]" action="" method="post">
-            <div class="border-4 border-black rounded-lg w-fit md:w-fit">
-                <div class="flex justify-center items-center border-b-2 border-black bg-[#ffff4d] rounded-t-md w-full p-2">
+            <div class="rounded-xl w-fit md:w-fit shadow-xl shadow-gray-500">
+                <div class="flex justify-center items-center border-b-2 border-black bg-[#ffff4d] rounded-t-xl w-full p-2">
                     <div class="flex items-center gap-2">
                         <img class="w-10 h-10" src="https://cdn-icons-png.flaticon.com/512/4075/4075591.png" alt="">
                         <h1 class=" text-2xl text-black font-medium"><span class="description tracking-wider font-semibold text-black">Magic</span> Notes</h1>
@@ -53,21 +53,21 @@
                     <!-- username -->
                     <div class="flex items-center flex-col gap-5 p-4">
                         <div class="flex flex-col">
-                            <label class="addtitle text-lg font-semibold require tracking-wider" for="username">Username :</label>
-                            <input class="description border-b-[3px] border-black bg-white rounded-t-md py-1 px-3 h-11 w-64 md:w-80 mt-1 focus:outline-none" type="text" name="username" id="username" autocomplete="off">
+                            <label class="addtitle text-lg md:font-semibold require tracking-wider" for="username">Username :</label>
+                            <input class="description bg-white rounded-md py-1 px-3 h-11 w-64 md:w-80 mt-1 focus:outline-none" type="text" name="username" id="username" autocomplete="off">
                             <p class="text-sm mt-0.5 ml-1.5 font-semibold error" id="usernameMsg"></p>
                         </div>
         
                         <!-- passowrd -->
                         <div class="flex flex-col relative">
-                            <label class="addtitle text-lg font-semibold tracking-wider require" for="password">Password :</label>
-                            <input class="description border-b-[3px] border-black bg-white rounded-t-md py-1 pl-3 pr-10 h-11 w-64 md:w-80 mt-1 focus:outline-none" type="password" name="password" id="password" autocomplete="new-password">
+                            <label class="addtitle text-lg md:font-semibold tracking-wider require" for="password">Password :</label>
+                            <input class="description bg-white rounded-md py-1 pl-3 pr-10 h-11 w-64 md:w-80 mt-1 focus:outline-none" type="password" name="password" id="password" autocomplete="new-password">
                             <p class="text-sm mt-0.5 ml-1.5 font-semibold error" id="password-message"></p>
                             <button class="absolute top-[2.6rem] right-2.5 focus:outline-none" type="button" id="toggleButton" onclick="togglePassword()"><svg id="showPasswordIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-[1.5rem] h-[1.5rem]"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
                             </button>
                         </div>
                         <div>
-                            <button id="submitButton" type="submit" class="buttons font-semibold bg-[#9999ff] text-[#0000ff] p-2 rounded-md w-40 text-xl tracking-wider focus:outline-none ">Login</button>
+                            <button id="submitButton" type="submit" class="buttons flex items-center justify-center gap-1 font-semibold bg-[#ffff4d] text-black p-2 rounded-md w-40 text-xl tracking-wider focus:outline-none shadow-lg">Login</button>
                         </div>
                     </div>
                 </div>
