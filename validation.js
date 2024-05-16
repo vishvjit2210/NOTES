@@ -4,17 +4,17 @@ function addBtnValidation() {
     let addTxtElm = $('#addTxt').val();
     let errorMessage = $('#errorMessage').hide();
     let errorMsg = $('#errorMsg').hide();
-    let addTitle = $('#addTitle').css('border','3px solid black');
-    let addTxt = $('#addTxt').css('border','3px solid black');
+    let addTitle = $('#addTitle').css('border-bttom','3px solid #9ca3af');
+    let addTxt = $('#addTxt').css('border-bottom','3px solid #9ca3af');
 
     if (!addTitleElm || !addTxtElm) {
         if (!addTitleElm) {
-            errorMessage.text('Please enter a Title.').show();
-            addTitle.css('border', '3px solid #ff0000');
+            errorMessage.text('Please enter a Title.').css('color','#e60000').show();
+            addTitle.css('border-bottom', '3px solid #ff0000');
         }
         if (!addTxtElm) {
-            errorMsg.text('Please enter a Description.').show();
-            addTxt.css('border', '3px solid #ff0000');
+            errorMsg.text('Please enter a Description.').css('color','#e60000').show();
+            addTxt.css('border-bottom', '3px solid #ff0000');
         }
     }
 }

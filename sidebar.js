@@ -2,7 +2,6 @@
 function showSidebar() {
     const homeButton = $('#home');
     const favButton = $('#favButton');
-    console.log(favButton);
     $('.bx-star').each(function() {
         $(this).attr('data-disabled', 'true').css('pointerEvents','none');
     });
@@ -27,7 +26,7 @@ function showSidebar() {
 
     $('body').css('overflowY','hidden');
     $('#main').fadeTo(700,0.5);
-    menuClose();
+      $('#screenMenu').addClass('hidden');
     event.preventDefault();
 }
 

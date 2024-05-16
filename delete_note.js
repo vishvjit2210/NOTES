@@ -109,10 +109,11 @@ let currentFavBtnIndex;
     }
     
 function successDltMsg() {
-    let successDltMsg = $('#noteCreateMsg');
+    let successDltMsg = $('#successMsg');
 
     let noteContainer = $('#noteContainer');
-    noteContainer.addClass('flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6]');
+    noteContainer.removeClass('successMsg');
+    noteContainer.addClass('removeMsg'); // include css class
     
     let createMsg = $('#createMsg');
     createMsg.html('Your note is successfully deleted').css('color', '#cc0000');
@@ -124,7 +125,6 @@ function successDltMsg() {
     // timeout function for hide animation message
         setTimeout(function () {
             successDltMsg.removeClass('scrollTopToDown').hide();
-            noteContainer.removeClass('flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6]');
         }, 2000);
 }
 

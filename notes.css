@@ -5,7 +5,9 @@ body{
     font-family: 'Saira Semi Condensed', sans-serif;
 }
 .logo{
-    font-family: 'Rubik Doodle Shadow', system-ui;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 900;
+    font-style: normal;
 }
 .welcome {
     font-family: 'Fugaz One', sans-serif;
@@ -13,9 +15,10 @@ body{
 .addtitle{
     font-family: 'Russo One', sans-serif;
 }
-
-.title {
-    font-family: 'Black Ops One', system-ui;
+.warning {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 .description {
     font-family: 'Roboto Slab', serif;
@@ -28,8 +31,24 @@ body{
     color:#ff1a1a;
     margin-left: 2px;
 }
+/* flex justify-between align-middle border-2 border-[#00cc00] bg-[#e6ffe6] */
+.successMsg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #00cc00;
+    background-color: #e6ffe6;
+}
+/* flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6] */
+.removeMsg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #cc0000;
+    background-color: #ffe6e6;
+}
 
-#noteCreateMsg,#success,#alreadyInFav,#addToFavourite {
+#successMsg,#removeMsg,#success,#alreadyInFav,#addToFavourite {
     display: none;
     width: 100%;
     visibility: hidden;
@@ -42,7 +61,7 @@ body{
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
-#noteCreateMsg.show,#success.show,#alreadyInFav.show,#addToFavourite.show {
+#successMsg.show,#removeMsg.show,#success.show,#alreadyInFav.show,#addToFavourite.show {
     visibility: visible;
     transform: translateY(0);
 }
@@ -50,7 +69,7 @@ body{
 .rating {
     display: flex;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 21px;
 }
 
 .bx-star {
@@ -60,7 +79,6 @@ body{
 .bxs-star {
     color: #f39c12; /* Golden color for the filled star */
 }
-
 @keyframes scrollRightToLeft {
     0% {
         transform: translateX(97rem);
@@ -166,6 +184,10 @@ body{
     animation: menuOpen 0.5s linear 1;
 }
 
+.createBoxOpen{
+    animation: menuOpen 1s linear 1;
+}
+
 @keyframes menuClose {
     0% {
         transform: scale(1);
@@ -177,30 +199,14 @@ body{
 
 .menu-close{
     animation: menuClose 0.5s linear 1;
+    
 }
 
-@media (max-width:399px) {
-    .popUp {
-        top:12rem;
-    }
+
+.deletePopUpShadow{
+    box-shadow: 1px 1px 30px 5px #808999;
 }
 
-@media (min-width:400px) {
-    .popUp{
-        top:21rem;
-    }
-}
-
-.addButton:active{
-    transform: scale(0.9);
-
-}
-.search:focus {
-    outline: none;
-    outline: 2px solid #8a3ab9;
-    outline-offset: 2px;
-}
-
-.home:hover{
-    color: #ff1a1a;
+.hidden {
+  display: none;
 }
