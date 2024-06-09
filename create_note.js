@@ -79,7 +79,7 @@ function showNotes(showRecentNotes = false) {
                                     <h5 id="title_${index}" class="card-title description font-black text-lg text-black w-60 truncate" title="${element.title}">${element.title}</h5>   
                                 </div>
                                 <div class="p-2">
-                                    <p id="description_${index}" class="card-text description text-base pt-1 pb-2 w-60 truncate" title="${element.text}">${element.text}</p>
+                                   <p id="description_${index}" class="card-text description text-base pt-1 pb-2 w-full h-[4.5rem] overflow-y-auto scrollbar-custom" title="${element.text}">${element.text}</p>
                                 </div>
                             </div>
 
