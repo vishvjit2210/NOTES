@@ -85,6 +85,7 @@ let currentFavBtnIndex;
     function deleteItem() {
             let yesBtn = $('#yesButton');
             yesBtn.html('Deleting...').addClass('text-md');
+            yesBtn.attr('disabled','true');
 
             let noBtn = $('#noButton');
             noBtn.attr('disabled','true');
@@ -95,12 +96,13 @@ let currentFavBtnIndex;
         // delete note based on the currentDeleteIndex
         setTimeout(() => {
             yesBtn.html('Yes').addClass('text-xl');
+            yesBtn.prop('disabled',false);
             noBtn.prop('disabled',false);
             closeBtn.prop('disabled',false);
             deleteNote(currentDeleteIndex);
             closeDeletePopUp();
             successDltMsg();
-        }, 1000);
+        }, 800);
         
     }
 

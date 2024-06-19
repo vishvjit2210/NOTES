@@ -1,13 +1,3 @@
-function createNoteButton() {
-    
-    let createNoteButton = $('#createNoteButton');
-    let createNoteBox = $('#createNoteBox');
-    setTimeout(function () {
-        createNoteBox.css('display','block');
-        createNoteButton.addClass('hidden');
-    }, 0);
-}
-
 let addBtn = document.getElementById('addBtn');
 let addTxt = document.getElementById("addTxt");
 let addTitle = document.getElementById("addTitle");
@@ -21,7 +11,7 @@ addBtn.addEventListener("click", function () {
             addBtn.disabled = false;
             addTitle.disabled = false;
             addTxt.disabled = false;
-        }, 2000);
+        }, 1000);
 
     setTimeout(() => {
 
@@ -72,37 +62,40 @@ function showNotes(showRecentNotes = false) {
         if (element.title && element.text) {
             if (!showRecentNotes || (showRecentNotes && timeDifference <= 1440)) { // Show all notes or only recent notes
                 html += `
-                    <div id="notesCard${index}" class="noteCard relative hover:scale-105 transition mt-4 h-52 w-72 sm:w-80 lg:w-72 xl:w-80 border-2 border-gray-300 bg-white rounded-lg shadow-lg shadow-gray-500">
+                    <div id="notesCard${index}" class="noteCard relative hover:scale-105 transition h-52 w-72 sm:w-80 lg:w-72 xl:w-80 border-2 border-gray-300 bg-white rounded-[10px] shadow-lg shadow-gray-500">
                         <div class="card-body">
                             <div>
                                 <div class="bg-gray-200 p-2 rounded-t-lg border-b-2 border-gray-300">
-                                    <h5 id="title_${index}" class="card-title description font-black text-lg text-black w-60 truncate" title="${element.title}">${element.title}</h5>   
+                                    <h5 id="title_${index}" class="card-title description font-black text-lg w-full overflow-y-auto" title="${element.title}">${element.title}</h5>   
                                 </div>
                                 <div class="p-2">
-                                   <p id="description_${index}" class="card-text description text-base pt-1 pb-2 w-full h-[4.5rem] overflow-y-auto scrollbar-custom" title="${element.text}">${element.text}</p>
+                                   <p id="description_${index}" class="card-text description text-lg w-full h-[4.7rem] overflow-y-auto" title="${element.text}">${element.text}</p>
                                 </div>
                             </div>
 
                             <div class="divide-y-[3px] absolute bottom-0 right-0 left-0 divide-gray-300">
                                 <div class="flex items-center justify-between px-2">
                                     <div class="rating" id="starRating_${index}" data-note="${index}">
-                                    <i onclick="initializeStars(${index}, 1)" class='bx bx-star' data-index="1"></i>
-                                    <i onclick="initializeStars(${index}, 2)" class='bx bx-star' data-index="2"></i>
-                                    <i onclick="initializeStars(${index}, 3)" class='bx bx-star' data-index="3"></i>
-                                    <i onclick="initializeStars(${index}, 4)" class='bx bx-star' data-index="4"></i>
-                                    <i onclick="initializeStars(${index}, 5)" class='bx bx-star' data-index="5"></i>                        
+                                        <i onclick="initializeStars(${index}, 1)" class='bx bx-star' data-index="1"></i>
+                                        <i onclick="initializeStars(${index}, 2)" class='bx bx-star' data-index="2"></i>
+                                        <i onclick="initializeStars(${index}, 3)" class='bx bx-star' data-index="3"></i>
+                                        <i onclick="initializeStars(${index}, 4)" class='bx bx-star' data-index="4"></i>
+                                        <i onclick="initializeStars(${index}, 5)" class='bx bx-star' data-index="5"></i>                        
                                     </div>                   
                                     <div>
-                                        <p id="Time${index}" class="py-2 description font-semibold text-sm float-right">${getMinutesDifference(new Date(element.time), new Date())} </p>
+                                        <p id="Time${index}" class="py-2 description font-semibold text-sm float-right text-blue-600">${getMinutesDifference(new Date(element.time), new Date())} </p>
                                     </div>
                                 </div>
-                                <div class="flex justify-center divide-x-[3px] divide-gray-300">
-                                    <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span> <span>Delete </span></button>
+                                <div class="flex justify-center divide-x-[3px] divide-gray-300" x-data="{showDeletePopUp:false}">
+                                    
+                                    <button x-on:click="showDeletePopUp(index) = true" class="dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span>
+                    <span>Delete</span>
+                </button>
 
                                     <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons focus:outline-none flex justify-center items-center rounded-br-lg gap-3 background-field h-10 w-full transition tracking-wider font-semibold  text-[#009900] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" style="fill: #009900;transform: ;msFilter:;"><path d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path></svg></span> <span>Favourite</span></button>
                                 </div>
-                            </div>
-                            
+                            </div> 
                         </div>
                     </div>  
                     `;
@@ -110,6 +103,8 @@ function showNotes(showRecentNotes = false) {
             }
         }
     });
+    // <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span> <span>Delete </span></button>
+
 
     let notesElm = document.getElementById("notes");
     if (notesObj.length !== 0 && hasRecentNotes) {
@@ -174,74 +169,6 @@ search.addEventListener("input", function () {
             element.style.display = "none";
         }
     });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    let createNoteBtn = $('#createNoteButton');
-    const menu = document.getElementById('screenMenu');
-    const menuButton = document.getElementById('profileImage');
-    let backgroundFields = document.getElementsByClassName('background-field');
-    let menuOpen = false;
-
-  menuButton.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    if (menuOpen) {
-        menu.classList.remove('hidden');
-        $('#main').fadeTo(200,0.6);
-        addBtn.disabled = true;
-        addTitle.disabled = true;
-        addTxt.disabled = true;
-        $('#searchTxt').attr('disabled','true');
-        createNoteBtn.attr('disabled','true');
-        $('body').css('overflowY','hidden');
-        $('.bx-star').each(function(){
-            $(this).attr('data-disabled','true').css('pointerEvents','none');
-        });
-    
-        for (var i = 0; i < backgroundFields.length; i++) {
-            backgroundFields[i].disabled = true;
-            $('.background-field').removeClass('addButton');
-        }
-    } else {
-      menu.classList.add('hidden');
-       $('#main').fadeTo(800,1);
-        addBtn.disabled = false;
-        addTitle.disabled = false;
-        addTxt.disabled = false;
-        createNoteBtn.prop('disabled', false);
-        $('#searchTxt').attr('disabled', false);
-        document.body.style.overflowY = 'visible';
-        $('.bx-star').each(function(){
-            $(this).attr('data-disabled','false').css('pointerEvents','visible');
-        });
-        for (var i = 0; i < backgroundFields.length; i++) {
-            backgroundFields[i].disabled = false;
-            $('.background-field').removeClass('addButton');
-        }
-    }
-  });
-
-  document.addEventListener('click', function(event) {
-    if (menuOpen && event.target !== menuButton) {
-      menu.classList.add('hidden');
-       $('#main').fadeTo(800,1);
-        addBtn.disabled = false;
-        addTitle.disabled = false;
-        addTxt.disabled = false;
-        createNoteBtn.prop('disabled', false);
-        $('#searchTxt').prop('disabled', false);
-        document.body.style.overflowY = 'visible';
-        $('.bx-star').each(function(){
-            $(this).attr('data-disabled','false').css('pointerEvents','visible');
-        });
-
-        for (var i = 0; i < backgroundFields.length; i++) {
-            backgroundFields[i].disabled = false;
-            $('.background-field').removeClass('addButton');
-        }
-      menuOpen = false;
-    }
-  });
 });
 
 

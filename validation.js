@@ -4,8 +4,8 @@ function addBtnValidation() {
     let addTxtElm = $('#addTxt').val();
     let errorMessage = $('#errorMessage').hide();
     let errorMsg = $('#errorMsg').hide();
-    let addTitle = $('#addTitle').css('border-bttom','3px solid #9ca3af');
-    let addTxt = $('#addTxt').css('border-bottom','3px solid #9ca3af');
+    let addTitle = $('#addTitle').css('border-bottom','3px solid #000000');
+    let addTxt = $('#addTxt').css('border-bottom','3px solid #000000');
 
     if (!addTitleElm || !addTxtElm) {
         if (!addTitleElm) {

@@ -29,9 +29,8 @@ body{
 .require::after {
     content: "*";
     color:#ff1a1a;
-    margin-left: 2px;
+    margin-left: 6px;
 }
-/* flex justify-between align-middle border-2 border-[#00cc00] bg-[#e6ffe6] */
 .successMsg{
     display: flex;
     justify-content: space-between;
@@ -39,7 +38,6 @@ body{
     border: 2px solid #00cc00;
     background-color: #e6ffe6;
 }
-/* flex justify-between align-middle border-2 border-[#cc0000] bg-[#ffe6e6] */
 .removeMsg{
     display: flex;
     justify-content: space-between;
@@ -73,7 +71,7 @@ body{
 }
 
 .bx-star {
-    color: #000000; /* Yellow color for the star */
+    color: #f39c12; /* Yellow color for the star */
 }
 
 .bxs-star {
@@ -211,13 +209,30 @@ body{
   display: none;
 }
 
-.scrollbar-custom {
-    scrollbar-width: thin;
-    scrollbar-color: #e6e6e6;
-    border-radius: 1rem;
+[x-cloak]{
+    display: none;
 }
 
-.scrollbar-custom::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+/* Scrollbar width and height */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    /* This line sets the height for the horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #929292;
+    border-radius: 4px;
+    /* Optional: add rounded corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

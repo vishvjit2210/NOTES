@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="notes.css">
     <!-- tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- alpinejs CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- font family link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,31 +38,66 @@
     <link rel="icon" type="image/svg+xml" href="favicons/favicon-32x32.png">
 </head>
 
-<body>
+<body x-data="{ showDeletePopup: false }">
     <div id="main">     
             <header>
                 <nav class="border-b-4 border-[#e60000]">
                     <div class="relative sm:flex items-center justify-between bg-[#ffff4d] w-full px-4 py-3">
                         <div class="flex items-center gap-2">
                             <img class="w-14 h-14" src="https://cdn-icons-png.flaticon.com/512/4075/4075591.png" alt="">
-                            <h1 class=" text-3xl lg:text-5xl text-black"><span class="description tracking-wider font-semibold text-black">Magic</span> Notes</h1>
+                            <h1 class=" text-3xl lg:text-5xl text-black font-normal"><span class="description tracking-wider font-semibold text-black">Magic</span> Notes</h1>
                         </div>
-                        <div class="flex space-x-4 mt-3 sm:mt-0">
-                            <input class="w-full description px-3 h-10 rounded bg-white text-black focus:outline-none" type="search" name="searchbar"
-                                id="searchTxt" placeholder="Search Here..." autocomplete="off">
-                            <img id="profileImage" class="w-10 h-10 rounded-full md:ml-1" src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt=" ">
+                        <div class="flex items-center justify-between space-x-3 mt-3 sm:mt-0">
+                            <div x-data="{features:false}" class="relative">
+                                <button x-on:click="features = !features" @click.outside="features = false" class="flex items-center font-medium description bg-white rounded-md h-10 pl-2 pr-0.5 focus:outline-none">Features 
+                                    <!-- down arrow -->
+                                    <span x-show="!features">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M16.939 7.939 12 12.879l-4.939-4.94-2.122 2.122L12 17.121l7.061-7.06z"></path></svg>
+                                    </span>
+                                    <!-- up arrow -->
+                                    <span x-show="features" x-cloak>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
+                                    </span>
+                                </button>
+                                <div  class="absolute md:right-0 top-[3rem]" x-cloak>
+                                    <ul x-show="features" x-transition class="p-2 flex flex-col gap-y-1.5 bg-white w-36 rounded-md shadow-lg shadow-gray-400">
+                                        <li><button id="home" class="flex items-center gap-2 description mt-2 lg:text-base text-black hover:scale-105 transition focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-black"><path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" /></svg> Home</button></li>
+    
+                                        <li><button id="favButton" class="flex items-center gap-2 description lg:text-base text-black hover:scale-105 transition focus:outline-none" onclick="showSidebar()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-[black]"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" /></svg> Favourite</button></li>
+    
+                                        <li><button id="recentNote" class="flex items-center gap-2 description lg:text-base text-black hover:scale-105 transition focus:outline-none" onclick="showNotes(true)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" x="0" y="0" viewBox="0 0 100 100" style="enable-background:new 0 0 512 512" xml:space="preserve" class="w-5 h-5"><g><path d="M95.073 31.841a44.006 44.006 0 0 0-9.023-13.038C77.718 10.471 66.639 5.881 54.854 5.881c-22.674 0-41.401 17.194-43.844 39.227l-3.154-3.154a3.998 3.998 0 0 0-5.656 0 3.999 3.999 0 0 0 0 5.657l10.14 10.141a4.001 4.001 0 0 0 5.656.001l10.141-10.141a4 4 0 1 0-5.656-5.657l-3.443 3.443c2.27-17.749 17.461-31.516 35.817-31.516 9.647 0 18.717 3.757 25.539 10.579a36.052 36.052 0 0 1 7.39 10.676 35.848 35.848 0 0 1 3.188 14.864c0 19.916-16.202 36.119-36.117 36.119-9.646 0-18.714-3.755-25.535-10.574a4 4 0 0 0-5.656 5.658c8.333 8.329 19.41 12.916 31.191 12.916 24.326 0 44.117-19.792 44.117-44.119 0-6.326-1.312-12.435-3.899-18.16z" fill="black" opacity="1" data-original="black" class=""></path><path d="M64.999 70.501a3.99 3.99 0 0 1-2.828-1.171l-10.26-10.26a4.002 4.002 0 0 1-1.172-2.829V30a4 4 0 0 1 8 0v24.584l9.088 9.088a3.999 3.999 0 0 1-2.828 6.829z" fill="black" opacity="1" data-original="black" class=""></path></g></svg> Recent Notes</button></li>
+                                        
+                                        <li><button id="allNote" class="flex items-center gap-2 description lg:text-base text-black hover:scale-105 transition focus:outline-none" onclick="showNotes()"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" x="0" y="0" viewBox="0 0 513.193 513.193" style="enable-background:new 0 0 512 512" xml:space="preserve" class="w-5 h-5"> <g><path d="M47.623 386.186C21.54 386.186.49 407.288.49 433.32v64.267c.738 19.881 29.269 19.866 30 0v-17.134h34.267v17.134c.738 19.881 29.269 19.866 30 0V433.32c0-26.085-21.106-47.134-47.134-47.134zm17.134 64.267H30.49V433.32c.829-22.718 33.452-22.688 34.267 0zM168.767 482.587h-17.134v-81.4c-.738-19.881-29.269-19.866-30 0v96.4c0 8.284 6.716 15 15 15h32.134c19.88-.738 19.865-29.27 0-30zM249.1 482.587h-17.134v-81.4c-.738-19.881-29.269-19.866-30 0v96.4c0 8.284 6.716 15 15 15H249.1c19.88-.738 19.865-29.27 0-30z" fill="black" opacity="1" data-original="black" class=""></path><path d="M447.809 426.701C599.506 242.987 467.125 3.798 256.493.585 83.185-2.519-45.178 179.913 15.088 341.933a14.999 14.999 0 0 0 14.14 9.994h69.825a15 15 0 0 0 13.355-21.831C56.957 224.91 137.475 93.374 256.492 94.857c135.477-1.11 211.86 161.849 124.484 265.009L353.617 332.5a14.999 14.999 0 0 0-25.293 7.551L296.19 494.543c-2.357 12.226 9.181 19.901 17.74 17.741l154.481-32.135a15 15 0 0 0 7.551-25.293z" fill="black" opacity="1" data-original="black" class=""></path></g></svg> All Notes</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input class="w-full description px-3 h-10 rounded bg-white text-black focus:outline-none" type="search" name="searchbar" id="searchTxt" placeholder="Search Here..." autocomplete="off">
+                            </div>
+                            <div x-data="{logOut:false}" class="relative">
+                                <div>
+                                    <img id="profileImage" x-on:click="logOut= !logOut" @click.outside="logOut = false" class="w-12 sm:h-12 rounded-full" src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt=" ">
+                                </div>
+                                <div>
+                                    <!-- logOut Btn -->
+                                    <ul x-show="logOut" x-transition x-cloak class="absolute right-0 top-[3.3rem] bg-white p-2 rounded-md shadow-lg shadow-gray-400">
+                                        <li><button id="logOut" class="flex items-center gap-1 description lg:text-base text-black hover:scale-105 transition focus:outline-none" onclick="showLogOutPopUp()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-[black]"><path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M14 10a.75.75 0 0 0-.75-.75H3.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 14 10Z" clip-rule="evenodd" /></svg> Logout</button></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>
             </header>
 
         <div class="containder flex justify-center">
-            <div class="px-3 mt-5">
+            <div class="px-3 mt-5" x-data="{createNoteBox:false}">
                 <div>
-                    <button id="createNoteButton" onclick="createNoteButton()" class="mb-5 hover:scale-105 transition flex items-center buttons gap-2 p-2 rounded-md bg-white shadow-lg shadow-gray-600 focus:outline-none"><span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></span> Click here to create note</button>
+                    <button id="createNoteButton" x-show="!createNoteBox" @click="createNoteBox = true" class="mb-5 hover:scale-105 transition flex items-center buttons gap-2 p-2 rounded-md bg-white shadow-lg shadow-gray-600 focus:outline-none"><span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg></span> Click here to create note</button>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <form id="createNoteBox" class="hidden w-full mb-5 space-y-5 shadow-xl shadow-gray-400 mt-3 bg-white rounded-lg py-8 px-10" action="">
+                    <form id="createNoteBox" x-show="createNoteBox" @click.outside="createNoteBox=false" x-transition class="w-full mb-5 space-y-5 shadow-xl shadow-gray-400 mt-3 bg-white rounded-lg py-8 px-10" action="">
                         <div>
                             <h5 class="text-xl require addtitle">Add Title</h5>
                             <input class="description h-12 px-2 text-justify w-full bg-transparent border-b-[3px] border-black focus:outline-none" type="text" name="text" id="addTitle" placeholder="Enter Title" autocomplete="off">
@@ -75,8 +113,8 @@
                         </div>
                     </form>
                     <div>
-                        <h1 class="text-2xl font-semibold pt-2 pb-1 w-full welcome border-b-4 rounded border-[#e60000]">Your Notes!</h1>
-                        <div id="notes" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-4 md:gap-5 rounded"> </div>
+                        <h1 class="text-2xl font-semibold pt-2 pb-1 mb-5 w-full welcome border-b-4 rounded border-[#e60000]">Your Notes!</h1>
+                        <div id="notes" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-4 gap-7 rounded"> </div>
                         <p id="note_message" class="mt-5 text-xl font-bold description"></p>
                     </div>
                 </div>
@@ -98,7 +136,7 @@
 
     <!-- delete popUp -->
     <div class="w-full transition flex justify-center items-center fixed top-52">
-        <div id="deletePopUp" class="hidden w-[18rem] lg:w-[30rem] bg-gray-100 deletePopUpShadow rounded-md">
+        <div id="deletePopUp" class=" w-[18rem] lg:w-[30rem] bg-gray-100 deletePopUpShadow rounded-md" x-show="showDeletePopup">
             <div class="flex items-center justify-between p-2 bg-gray-200 rounded-t-md border-b-2 border-gray-300">
                     <p class="text-xl font-bold text-[#e60000] tracking-wide">Delete Note!</p>
 
@@ -115,10 +153,10 @@
             </div>
             <div class="flex justify-center divide-x-[3px] divide-gray-300 w-full border-t-[3px] border-gray-300 mt-4">
                 <div class="w-full">
-                    <button id="noButton" onclick="closeDeletePopUp();" class="noBtn bg-gray-200 text-gray-700 rounded-bl-md buttons transition w-full h-11 font-semibold text-xl">No</button>
+                    <button id="noButton" @click="showDeletePopup=false" class="noBtn bg-gray-200 text-gray-700 rounded-bl-md buttons transition w-full h-11 font-semibold text-xl">No</button>
                 </div>
                 <div class="w-full">
-                    <button id="yesButton" onclick="deleteItem(this.id)" class="yesBtn flex justify-center items-center gap-2 bg-red-200 text-[#ff0000] rounded-br-md buttons transition w-full h-11 font-semibold text-xl">
+                    <button id="yesButton"  onclick="deleteItem(this.id)" class="yesBtn flex justify-center items-center gap-2 bg-red-200 text-[#ff0000] rounded-br-md buttons transition w-full h-11 font-semibold text-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" /></svg> 
                         Yes</button>
                 </div>
@@ -152,35 +190,9 @@
             </div>
         </div>
     </div>
-
-    <!-- screen menu -->
-    <div id="screenMenu" class="hidden absolute top-[7rem] md:top-[4rem] right-1 bg-white shadow-xl shadow-gray-400 rounded-lg z-20">
-        <!-- menu header -->
-        <div class="flex justify-end items-center border-b-[3px] border-[#e60000] px-2 py-1 text-white">
-            <h1 class="welcome text-lg text-black">Menu</h1>
-        </div>
-        <!-- menu body -->
-        <div>
-            <ul class="p-2 flex flex-col gap-y-1.5 text-white">
-                <!-- home Button -->
-                <li><button id="home" class="flex items-center gap-2 description mt-2 lg:text-lg text-black hover:scale-105 transition focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-black"><path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" /></svg> Home</button></li>
-    
-                <!-- favourite Button -->
-                <li><button id="favButton" class="flex items-center gap-2 description lg:text-lg text-black hover:scale-105 transition focus:outline-none" onclick="showSidebar()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-[black]"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" /></svg> Favourite</button></li>
-    
-                <!-- recent note button -->
-                <li><button class="flex items-center gap-2 description lg:text-lg text-black hover:scale-105 transition focus:outline-none" onclick="showNotes(true)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" x="0" y="0" viewBox="0 0 100 100" style="enable-background:new 0 0 512 512" xml:space="preserve" class="w-6 h-6"><g><path d="M95.073 31.841a44.006 44.006 0 0 0-9.023-13.038C77.718 10.471 66.639 5.881 54.854 5.881c-22.674 0-41.401 17.194-43.844 39.227l-3.154-3.154a3.998 3.998 0 0 0-5.656 0 3.999 3.999 0 0 0 0 5.657l10.14 10.141a4.001 4.001 0 0 0 5.656.001l10.141-10.141a4 4 0 1 0-5.656-5.657l-3.443 3.443c2.27-17.749 17.461-31.516 35.817-31.516 9.647 0 18.717 3.757 25.539 10.579a36.052 36.052 0 0 1 7.39 10.676 35.848 35.848 0 0 1 3.188 14.864c0 19.916-16.202 36.119-36.117 36.119-9.646 0-18.714-3.755-25.535-10.574a4 4 0 0 0-5.656 5.658c8.333 8.329 19.41 12.916 31.191 12.916 24.326 0 44.117-19.792 44.117-44.119 0-6.326-1.312-12.435-3.899-18.16z" fill="black" opacity="1" data-original="black" class=""></path><path d="M64.999 70.501a3.99 3.99 0 0 1-2.828-1.171l-10.26-10.26a4.002 4.002 0 0 1-1.172-2.829V30a4 4 0 0 1 8 0v24.584l9.088 9.088a3.999 3.999 0 0 1-2.828 6.829z" fill="black" opacity="1" data-original="black" class=""></path></g></svg> Recent Notes</button></li>
-                <!-- all notes button -->
-                <li><button class="flex items-center gap-2 description lg:text-lg text-black hover:scale-105 transition focus:outline-none" onclick="showNotes()"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" x="0" y="0" viewBox="0 0 513.193 513.193" style="enable-background:new 0 0 512 512" xml:space="preserve" class="w-5 h-5"> <g><path d="M47.623 386.186C21.54 386.186.49 407.288.49 433.32v64.267c.738 19.881 29.269 19.866 30 0v-17.134h34.267v17.134c.738 19.881 29.269 19.866 30 0V433.32c0-26.085-21.106-47.134-47.134-47.134zm17.134 64.267H30.49V433.32c.829-22.718 33.452-22.688 34.267 0zM168.767 482.587h-17.134v-81.4c-.738-19.881-29.269-19.866-30 0v96.4c0 8.284 6.716 15 15 15h32.134c19.88-.738 19.865-29.27 0-30zM249.1 482.587h-17.134v-81.4c-.738-19.881-29.269-19.866-30 0v96.4c0 8.284 6.716 15 15 15H249.1c19.88-.738 19.865-29.27 0-30z" fill="black" opacity="1" data-original="black" class=""></path><path d="M447.809 426.701C599.506 242.987 467.125 3.798 256.493.585 83.185-2.519-45.178 179.913 15.088 341.933a14.999 14.999 0 0 0 14.14 9.994h69.825a15 15 0 0 0 13.355-21.831C56.957 224.91 137.475 93.374 256.492 94.857c135.477-1.11 211.86 161.849 124.484 265.009L353.617 332.5a14.999 14.999 0 0 0-25.293 7.551L296.19 494.543c-2.357 12.226 9.181 19.901 17.74 17.741l154.481-32.135a15 15 0 0 0 7.551-25.293z" fill="black" opacity="1" data-original="black" class=""></path></g></svg> All Notes</button></li>
-    
-                <!-- logout Button -->
-                <li><button id="logOut" class="flex items-center gap-2 description lg:text-lg text-black hover:scale-105 transition focus:outline-none" onclick="showLogOutPopUp()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-[black]"><path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M14 10a.75.75 0 0 0-.75-.75H3.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 14 10Z" clip-rule="evenodd" /></svg> Logout</button></li>
-            </ul>
-        </div>
-    </div>
     
     <!-- sidebar -->
-    <div id="sidebarContainer" class="hidden bg-gray-50 pb-3 fixed top-0 w-72 lg:w-80 h-[100vh] overflow-y-auto z-50">
+    <div id="sidebarContainer" @click.outside="sidebarContainer=false" class="hidden bg-gray-50 pb-3 fixed top-0 w-80 lg:w-96 h-[100vh] overflow-y-auto z-50">
         <div id="sidebarHeader" class="p-2 flex justify-between items-center">
             <div>
                 <h1 class="text-xl text-black welcome">Your Favourite Notes!</h1>
