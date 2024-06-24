@@ -86,14 +86,10 @@ function showNotes(showRecentNotes = false) {
                                         <p id="Time${index}" class="py-2 description font-semibold text-sm float-right text-blue-600">${getMinutesDifference(new Date(element.time), new Date())} </p>
                                     </div>
                                 </div>
-                                <div class="flex justify-center divide-x-[3px] divide-gray-300" x-data="{showDeletePopUp:false}">
-                                    
-                                    <button x-on:click="showDeletePopUp(index) = true" class="dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span>
-                    <span>Delete</span>
-                </button>
+                                <div class="flex justify-center divide-x-[3px] divide-gray-300">
+                                    <button id="${index}" onclick="showDeletePopUp(this.id)" class="deleteButton dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span> <span>Delete </span></button>
 
-                                    <button id="${index}" onclick="favorites(this.id)" class="favBtn buttons focus:outline-none flex justify-center items-center rounded-br-lg gap-3 background-field h-10 w-full transition tracking-wider font-semibold  text-[#009900] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" style="fill: #009900;transform: ;msFilter:;"><path d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path></svg></span> <span>Favourite</span></button>
+                                    <button id="${index}" onclick="favorites(this.id)" class="favouriteButton favBtn buttons focus:outline-none flex justify-center items-center rounded-br-lg gap-3 background-field h-10 w-full transition tracking-wider font-semibold  text-[#009900] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" style="fill: #009900;transform: ;msFilter:;"><path d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path></svg></span> <span>Favourite</span></button>
                                 </div>
                             </div> 
                         </div>
@@ -103,8 +99,6 @@ function showNotes(showRecentNotes = false) {
             }
         }
     });
-    // <button id="${index}" onclick="showDeletePopUp(this.id)" class="dltBtn focus:outline-none flex justify-center items-center rounded-bl-lg gap-3 buttons background-field h-10 w-full transition tracking-wider font-semibold  text-[#ff0000] text-lg"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd" /></svg></span> <span>Delete </span></button>
-
 
     let notesElm = document.getElementById("notes");
     if (notesObj.length !== 0 && hasRecentNotes) {
@@ -170,6 +164,7 @@ search.addEventListener("input", function () {
         }
     });
 });
+
 
 
 

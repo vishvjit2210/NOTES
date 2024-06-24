@@ -7,12 +7,17 @@ function logOut() {
     }, 1300);
 }
 
+    let activePopup = null;
+    let clickEvent = null;
     function showLogOutPopUp() {
+        activePopup = 'logOutPopUp';
+        clickEvent = 'logOutPopUp';
+        $('#logOutPopUp').removeClass('ping-out');
         $('.bx-star').each(function(){
             $(this).attr('data-disabled','true').css('pointerEvents','none');
         });
         $('#logOutPopUp').show();
-        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
+        $('#addTitle, #addTxt, #searchTxt, #addBtn, #profileImageBtn, #featuresBtn, #createNoteButton').prop('disabled', true);
         $('#addBtn').removeClass('addButton');
         $('#home, #favButton').removeClass('home');
         
@@ -24,22 +29,43 @@ function logOut() {
         }
 
         $('body').css('overflowY','hidden');
+        $('#main').fadeTo(400,0.5); 
     }
+    
+    $(document).keydown(function(event) {
+        if (event.key === 'Escape') {
+            if (activePopup === 'logOutPopUp') {
+                closeLogOutPopUp();
+            }
+        }
+    });
 
-    // close delete popup
+        $(document).mouseup(function(event) {
+            if (clickEvent === 'logOutPopUp' && !$('#logOutPopUp').is(event.target) && $('#logOutPopUp').has(event.target).length === 0) {
+                closeLogOutPopUp();
+            }
+        });
+
+    // closeLogOutPopUp using Esc key
     function closeLogOutPopUp() {
+        if (activePopup === 'logOutPopUp'){
+            activePopup = null;
+        }
+        if (clickEvent === 'logOutPopUp'){
+            clickEvent = null;
+        }
         $('.bx-star').each(function(){
             $(this).attr('data-disabled','false').css('pointerEvents','visible');
         });
         
-        let closeDeletePopUp = $('#logOutPopUp');
-        closeDeletePopUp.addClass('ping-out');
-        closeDeletePopUp.on('animationend', function animationEndHandler() {
-            closeDeletePopUp.removeClass('ping-out ping-in').off('animationend', animationEndHandler).hide();
+        let closeLogOutPopUp = $('#logOutPopUp');
+        closeLogOutPopUp.addClass('ping-out');
+        closeLogOutPopUp.on('animationend', function animationEndHandler() {
+            closeLogOutPopUp.removeClass('ping-out ping-in').off('animationend', animationEndHandler).hide();
         });
       
         // Reference of text input and textarea
-        $('#addTitle, #addTxt, #searchTxt,#addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
+        $('#addTitle, #addTxt, #searchTxt,#addBtn, #profileImageBtn, #featuresBtn, #createNoteButton').prop('disabled', false);
         $('#addBtn').addClass('addButton');
         $('#searchTxt').addClass('search');
         $('#home, #favButton').addClass('home');
@@ -52,25 +78,29 @@ function logOut() {
         }
       
         document.body.style.overflowY = 'visible';
+        $('#main').fadeTo(800,1);
       }
 
-        function successLoggedOutMsg() {
-            closeLogOutPopUp();
-            let successLoggedOutMsg = $('#successMsg');
+    function successLoggedOutMsg() {
+        closeLogOutPopUp();
+        let successLoggedOutMsg = $('#successMsg');
             
-            let noteContainer = $('#noteContainer');
-            noteContainer.removeClass('removeMsg');
-            noteContainer.addClass('successMsg'); // include css class
+        let noteContainer = $('#noteContainer');
+        noteContainer.removeClass('removeMsg');
+        noteContainer.addClass('successMsg'); // include css class
             
-            let createMsg = $('#createMsg');
-            createMsg.html('You have successfully Logout').css('color', '#00cc00');
+        let createMsg = $('#createMsg');
+        createMsg.html('You have successfully Logout').css('color', '#00cc00');
             
-            const SVG = `<i class='bx bx-log-out text-lg lg:text-2xl text-[#00cc00]'></i>`;
-            $('#SVG').html(SVG);
+        const SVG = `<i class='bx bx-log-out text-lg lg:text-2xl text-[#00cc00]'></i>`;
+        $('#SVG').html(SVG);
 
-                successLoggedOutMsg.addClass('success scrollTopToDown show').show();
-            // timeout function for hide animation message
-                setTimeout(function () {
-                    successLoggedOutMsg.removeClass('scrollTopToDown').hide();
-                }, 2000);
-        }
+        successLoggedOutMsg.addClass('success scrollTopToDown show').show();
+        // timeout function for hide animation message
+        setTimeout(function () {
+            successLoggedOutMsg.removeClass('scrollTopToDown').hide();
+        }, 2000);
+        if (activePopup === 'sidebarContainer'){
+            activePopup = null;  
+        } 
+    }

@@ -30,13 +30,15 @@ function deleteNote(index) {
 let currentDeleteIndex;
 let currentFavBtnIndex;
     function showDeletePopUp(index) {
+        activePopup = 'deletePopUp';
+        clickEvent = 'deletePopUp';
         $('.bx-star').each(function(){
             $(this).attr('data-disabled','true').css('pointerEvents','none');
         });
         currentDeleteIndex = index;
         currentFavBtnIndex = index;
         $('#deletePopUp').show();
-        $('#addTitle, #addTxt, #searchTxt, #addBtn, #home, #favButton, #menuBtn').prop('disabled', true);
+        $('#addTitle, #addTxt, #searchTxt, #addBtn, #profileImageBtn, #featuresBtn, #createNoteButton').prop('disabled', true);
         $('#addBtn').removeClass('addButton');
         $('#home, #favButton').removeClass('home');
         
@@ -49,11 +51,33 @@ let currentFavBtnIndex;
 
         $('body').css('overflowY','hidden');
         PingAnimationForOpenDeletePopUp();
-        $('#main').fadeTo(800,0.6);
+        $('#main').fadeTo(800,0.5);
     }
+
+    // close deletePopUp using Esc key
+    $(document).keydown(function(event) {
+        if (event.key === 'Escape') {
+            if (activePopup === 'deletePopUp') {
+                closeDeletePopUp();
+            }
+        }
+    });
+
+        $(document).mouseup(function(event) {
+            if (clickEvent === 'deletePopUp' && !$('#deletePopUp').is(event.target) && $('#deletePopUp').has(event.target).length === 0) {
+                closeDeletePopUp();
+            }
+        });
 
     // close delete popup
     function closeDeletePopUp() {
+        if (activePopup === 'deletePopUp') { 
+            activePopup = null;
+        }
+
+        if (clickEvent === 'deletePopUp') { 
+            clickEvent = null;
+        }
         $('.bx-star').each(function(){
             $(this).attr('data-disabled','false').css('pointerEvents','visible');
         });
@@ -65,7 +89,7 @@ let currentFavBtnIndex;
         });
       
         // Reference of text input and textarea
-        $('#addTitle, #addTxt, #searchTxt,#addBtn, #home, #favButton, #menuBtn').prop('disabled', false);
+        $('#addTitle, #addTxt, #searchTxt,#addBtn, #profileImageBtn, #featuresBtn, #createNoteButton').prop('disabled', false);
         $('#addBtn').addClass('addButton');
         $('#searchTxt').addClass('search');
         $('#home, #favButton').addClass('home');
@@ -79,6 +103,7 @@ let currentFavBtnIndex;
       
         document.body.style.overflowY = 'visible';
         $('#main').fadeTo(800,1);
+        
       }
       
 

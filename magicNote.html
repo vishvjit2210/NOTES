@@ -38,7 +38,7 @@
     <link rel="icon" type="image/svg+xml" href="favicons/favicon-32x32.png">
 </head>
 
-<body x-data="{ showDeletePopup: false }">
+<body>
     <div id="main">     
             <header>
                 <nav class="border-b-4 border-[#e60000]">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex items-center justify-between space-x-3 mt-3 sm:mt-0">
                             <div x-data="{features:false}" class="relative">
-                                <button x-on:click="features = !features" @click.outside="features = false" class="flex items-center font-medium description bg-white rounded-md h-10 pl-2 pr-0.5 focus:outline-none">Features 
+                                <button id="featuresBtn" x-on:click="features = !features" @click.outside="features = false" class="flex items-center font-medium description bg-white rounded-md h-10 pl-2 pr-0.5 focus:outline-none">Features 
                                     <!-- down arrow -->
                                     <span x-show="!features">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M16.939 7.939 12 12.879l-4.939-4.94-2.122 2.122L12 17.121l7.061-7.06z"></path></svg>
@@ -77,7 +77,7 @@
                             </div>
                             <div x-data="{logOut:false}" class="relative">
                                 <div>
-                                    <img id="profileImage" x-on:click="logOut= !logOut" @click.outside="logOut = false" class="w-12 sm:h-12 rounded-full" src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt=" ">
+                                    <button id="profileImageBtn"  x-on:click="logOut= !logOut" @click.outside="logOut = false"><img id="profileImage" class="w-12 sm:h-12 rounded-full" src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt=" "></button>
                                 </div>
                                 <div>
                                     <!-- logOut Btn -->
@@ -136,7 +136,7 @@
 
     <!-- delete popUp -->
     <div class="w-full transition flex justify-center items-center fixed top-52">
-        <div id="deletePopUp" class=" w-[18rem] lg:w-[30rem] bg-gray-100 deletePopUpShadow rounded-md" x-show="showDeletePopup">
+        <div id="deletePopUp" class="hidden w-[18rem] lg:w-[30rem] bg-gray-100 deletePopUpShadow rounded-md">
             <div class="flex items-center justify-between p-2 bg-gray-200 rounded-t-md border-b-2 border-gray-300">
                     <p class="text-xl font-bold text-[#e60000] tracking-wide">Delete Note!</p>
 
@@ -153,10 +153,10 @@
             </div>
             <div class="flex justify-center divide-x-[3px] divide-gray-300 w-full border-t-[3px] border-gray-300 mt-4">
                 <div class="w-full">
-                    <button id="noButton" @click="showDeletePopup=false" class="noBtn bg-gray-200 text-gray-700 rounded-bl-md buttons transition w-full h-11 font-semibold text-xl">No</button>
+                    <button id="noButton" onclick="closeDeletePopUp();" class="noBtn bg-gray-200 text-gray-700 rounded-bl-md buttons transition w-full h-11 font-semibold text-xl">No</button>
                 </div>
                 <div class="w-full">
-                    <button id="yesButton"  onclick="deleteItem(this.id)" class="yesBtn flex justify-center items-center gap-2 bg-red-200 text-[#ff0000] rounded-br-md buttons transition w-full h-11 font-semibold text-xl">
+                    <button id="yesButton" onclick="deleteItem(this.id)" class="yesBtn flex justify-center items-center gap-2 bg-red-200 text-[#ff0000] rounded-br-md buttons transition w-full h-11 font-semibold text-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" /></svg> 
                         Yes</button>
                 </div>
@@ -192,7 +192,7 @@
     </div>
     
     <!-- sidebar -->
-    <div id="sidebarContainer" @click.outside="sidebarContainer=false" class="hidden bg-gray-50 pb-3 fixed top-0 w-80 lg:w-96 h-[100vh] overflow-y-auto z-50">
+    <div id="sidebarContainer" class="hidden bg-gray-50 pb-3 fixed top-0 w-80 lg:w-96 h-[100vh] overflow-y-auto z-50">
         <div id="sidebarHeader" class="p-2 flex justify-between items-center">
             <div>
                 <h1 class="text-xl text-black welcome">Your Favourite Notes!</h1>
